@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BanderasRojas · Bitácora del proyecto</title>
+<style>
+:root{--bg:#f7f8fb;--card:#fff;--tx:#1c2333;--mu:#5b6478;--ac:#d1495b;--ac2:#2f6fdb;--bd:#e3e7ef;--ok:#2e9e6f;--wa:#e0a100;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1b202b;--tx:#e8ebf2;--mu:#9aa3b5;--ac:#ef6f80;--ac2:#6c9bf0;--bd:#2c3342;--ok:#4cc397;--wa:#f0c14b}}
+:root[data-theme="dark"]{--bg:#12151c;--card:#1b202b;--tx:#e8ebf2;--mu:#9aa3b5;--ac:#ef6f80;--ac2:#6c9bf0;--bd:#2c3342;--ok:#4cc397;--wa:#f0c14b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:28px 18px 60px}h1{font-size:clamp(24px,4.5vw,36px);margin:0 0 6px;line-height:1.15}h2{font-size:21px;margin:26px 0 8px}h3{font-size:16px;margin:0 0 8px}
+.mu,.note{color:var(--mu);font-size:14px}.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:16px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin:12px 0}.two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));margin:12px 0}
+.kpi b{display:block;font-size:26px;line-height:1.1}.kpi span{color:var(--mu);font-size:13px}
+.shell{display:grid;grid-template-columns:214px 1fr;gap:18px;margin-top:14px;align-items:start}
+.side{position:sticky;top:76px;display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px}
+.side button{border:0;background:transparent;color:var(--tx);padding:10px 12px;border-radius:10px;cursor:pointer;font:inherit;text-align:left}
+.side button:hover{background:var(--bg)}.side button.on{background:var(--ac2);color:#fff}
+.side h4{margin:12px 4px 2px;font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.flags{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:6px}
+.flag{border:1px solid var(--bd);border-left:6px solid var(--c,var(--ok));border-radius:12px;background:var(--card);padding:10px 12px}.flag b{display:block;font-size:22px;line-height:1.2}.flag span{display:block;font-size:12px;color:var(--mu)}
+@media(max-width:760px){.shell{grid-template-columns:1fr}.side{position:static;flex-direction:row;flex-wrap:wrap}.side h4{display:none}}
+.bar{display:grid;grid-template-columns:minmax(110px,40%) 1fr 78px;gap:8px;align-items:center;margin:6px 0;font-size:14px}.bar .t{background:var(--bd);border-radius:7px;overflow:hidden}.bar i{display:block;height:13px;background:var(--ac2)}.bar em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.cols{display:flex;align-items:flex-end;gap:5px;height:150px;margin-top:8px}.cols div{flex:1;text-align:center;font-size:11px}.cols i{display:block;border-radius:5px 5px 0 0}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{padding:6px 10px;border-bottom:1px solid var(--bd);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}select,input[type=range],input[type=file]{width:100%;padding:9px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit}input[type=range]{padding:0}
+.big{font-size:48px;font-weight:700;line-height:1}.pill{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:600;font-size:14px;color:#fff}
+.tier{border-left:6px solid var(--c)}.tier b{font-size:24px}.err{color:var(--ac);font-weight:600}.hide{display:none}ul{padding-left:20px}li{margin:6px 0}
+:root{--bg:#fff9ec;--card:#fff;--tx:#23304a;--mu:#5d6b86;--bd:#ffe3b0;--ac:#ff4d6d;--ac2:#2d9cdb;--ok:#43b649;--wa:#ffb020;--b:#2d9cdb;--o:#ff8a1f;--g:#43b649;--p:#8e5ad7;--r:#ff4d4d;--t:#00aba9;--y:#ffc533;--k:#ff5fa2}
+body{font-family:Fredoka,"Trebuchet MS","Segoe UI",system-ui,sans-serif}.card{border:3px solid var(--bd);border-radius:20px}
+.top{position:sticky;top:0;z-index:30;background:#fff;color:#23304a;border-bottom:5px solid var(--y);display:flex;align-items:center;gap:14px;padding:8px 18px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:700;cursor:pointer;white-space:nowrap}
+.menu{display:flex;gap:6px;flex:1;flex-wrap:wrap;align-items:center}
+.menu>a,.dd>button,.btn{font:inherit;font-weight:600;font-size:15px;border:0;border-radius:999px;padding:8px 15px;color:#fff;cursor:pointer;text-decoration:none;background:var(--c,var(--b));display:inline-block}
+.dd{position:relative}.sub{display:none;position:absolute;left:0;top:100%;min-width:235px;background:#fff;border:3px solid var(--c);border-radius:16px;padding:6px;box-shadow:0 10px 24px rgba(0,0,0,.18);z-index:40}
+.dd:hover .sub,.dd:focus-within .sub{display:block}.sub a{display:block;padding:9px 12px;border-radius:10px;color:#23304a;font-weight:600;cursor:pointer}.sub a:hover{background:#fff3d6}
+.btn.alt{background:var(--o)}.btn.big{font-size:17px;padding:12px 26px;margin:4px 6px 4px 0}
+.hero{display:grid;gap:22px;grid-template-columns:1.5fr 1fr;align-items:center;margin:26px 0}.hero h1{font-size:clamp(28px,4.6vw,46px);margin:12px 0}
+.tag{display:inline-block;background:var(--p);color:#fff;border-radius:999px;padding:4px 14px;font-weight:600;font-size:14px}
+.stat{background:var(--t);color:#fff;border:0;text-align:center}.stat b{font-size:68px;line-height:1;display:block}
+.wheelbox{display:grid;gap:22px;grid-template-columns:minmax(280px,400px) 1fr;align-items:center;margin:14px 0}
+.wheel path{cursor:pointer;transition:transform .15s;transform-origin:150px 150px}.wheel path:hover{transform:scale(1.05)}
+.tiles{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin:14px 0}
+.tile{border-radius:20px;padding:16px;color:#fff;cursor:pointer;background:var(--c)}.tile b{display:block;font-size:30px}.tile small{display:block;opacity:.95}.tile.dk{color:#23304a}
+.pg{padding:4px 0 30px}@media(max-width:800px){.hero,.wheelbox{grid-template-columns:1fr}}
+.ft{background:#23304a;color:#e7ecf7;padding:26px 20px;margin-top:30px}.ft>div{max-width:1180px;margin:0 auto;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.ft b{color:var(--y)}.ft p{margin:4px 0;font-size:14px}
+.opts label{display:inline-flex;gap:6px;align-items:center;margin:6px 16px 0 0;font-size:15px;color:var(--tx)}.q{margin:8px 0}.q b{color:var(--p)}
+input[type=number]{width:100%;padding:9px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font:inherit}
+.msg{margin-top:12px;padding:12px 16px;border-radius:14px;font-weight:600}.msg.ok{background:color-mix(in srgb,var(--ok) 18%,transparent)}.msg.er{background:color-mix(in srgb,var(--ac) 18%,transparent)}
+.sc{display:inline-block;padding:6px 16px;border-radius:999px;color:#fff;font-weight:700;background:var(--ok)}
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;display=swap">
+</head><body>
+<header class="top"><a class="logo" id="lg" data-go="home"></a><nav class="menu" id="mn"><a data-go="home" style="--c:var(--g)">Inicio</a><div class="dd" style="--c:var(--b)"><button>Definición ▾</button><div class="sub"><a data-go="problema">01 Problema y contexto</a><a data-go="preguntas">02 Preguntas analíticas</a><a data-go="fuentes">03 Fuentes de datos</a><a data-go="dataset">04 Dataset y diccionario</a><a data-go="limites">05 Limitaciones</a></div></div><div class="dd" style="--c:var(--o)"><button>Recolección y depuración ▾</button><div class="sub"><a data-go="p0">Calidad y depuración</a><a data-go="form">Agregar datos (formulario)</a><a data-go="p6">Comparar datasets</a></div></div><div class="dd" style="--c:var(--p)"><button>Análisis de datos ▾</button><div class="sub"><a data-go="p1">Descriptiva · ¿qué pasó?</a><a data-go="p4">Diagnóstica · ¿por qué?</a></div></div><div class="dd" style="--c:var(--t)"><button>Predicción y acción ▾</button><div class="sub"><a data-go="p2">Predictiva · ¿qué podría pasar?</a><a data-go="p3">Prescriptiva · ¿qué hacer?</a></div></div><div class="dd" style="--c:var(--k)"><button>Presentación ▾</button><div class="sub"><a data-go="p5">Guion ejecutivo</a><a data-go="aprende">Aprende</a></div></div><a data-go="dataset" style="--c:var(--r)">Dataset</a><a data-go="fuentes" style="--c:var(--b)">Fuentes</a></nav><a class="btn" data-go="form" style="--c:var(--g)">➕ Agregar datos</a><a class="btn alt" data-go="subir">Subir otro CSV</a></header>
+<main>
+<div id="g-home" class="pg"><section class="hero"><div><span class="tag">Definición del problema y los datos</span><h1>Banderas rojas y alteraciones emocionales en la primera infancia</h1><p class="mu">Bitácora técnica del proyecto de analítica de datos: tamizaje Q-CHAT-10 en niños de 12 a 36 meses, con los cuatro niveles de analítica (descriptiva, diagnóstica, predictiva y prescriptiva). Es un tamizaje, no un diagnóstico.</p><a class="btn big" data-go="dataset" style="--c:var(--b)">Ver el dataset</a><a class="btn big alt" data-go="problema">Leer el problema</a></div><div class="card stat"><small>Niños en alerta del tamizaje</small><b id="h-pct">–</b><span id="h-sub"></span></div></section>
+<h2>Etapas del proyecto</h2><div class="tiles"><div class="tile" style="--c:var(--b)"><b id="h-n">–</b>registros procesados<small>(mínimo exigido: 100)</small></div><div class="tile" style="--c:var(--g)"><b>10 ítems</b>del Q-CHAT-10<small>19 variables en total</small></div><div class="tile dk" style="--c:var(--y)"><b>12–36</b>meses de edad<small>muestra autoseleccionada</small></div></div>
+<h2>Cómo navegar esta bitácora</h2><p class="mu">Haz clic en un gajo de la rueda o usa los menús de arriba. Cada sección se explica por sí misma.</p><div class="wheelbox"><div id="wh"></div><div class="card" id="wi" style="min-height:120px;font-size:18px">Pasa el mouse por un gajo</div></div><div class="tiles" id="tl"></div></div>
+<div id="g-problema" class="pg hide"><h2>01 · Problema y contexto</h2><div class="two"><div class="card"><h3>Contexto</h3><p>La primera infancia es decisiva para el desarrollo social y emocional. Detectar a tiempo señales de alerta permite derivar a valoración profesional antes de que las dificultades se consoliden.</p></div><div class="card"><h3>Delimitación</h3><p>Se estudian 1.054 cuestionarios Q-CHAT-10 de niños de 12 a 36 meses, respondidos por cuidadores con la app ASDTests. Más de 3 puntos indican alerta, no diagnóstico.</p></div></div><h3 style="margin-top:16px">Análisis en cuatro niveles</h3><div class="tiles"><div class="tile" data-go="p1" style="--c:var(--r)"><b>¿Qué pasó?</b>Descriptiva</div><div class="tile" data-go="p4" style="--c:var(--t)"><b>¿Por qué?</b>Diagnóstica</div><div class="tile dk" data-go="p2" style="--c:var(--y)"><b>¿Qué podría pasar?</b>Predictiva</div><div class="tile" data-go="p3" style="--c:var(--k)"><b>¿Qué hacer?</b>Prescriptiva</div></div></div>
+<div id="g-preguntas" class="pg hide"><h2>02 · Preguntas analíticas</h2><div class="card"><h3>Pregunta principal</h3><p>¿En qué edades, con qué indicadores y en qué perfiles se concentran las banderas rojas del tamizaje?</p></div><div class="card" style="margin-top:12px"><h3>Preguntas secundarias</h3><ol><li>¿Qué porcentaje supera el umbral de alerta y cómo se distribuye el puntaje?</li><li>¿En qué rango de edad se concentran más casos en alerta?</li><li>¿Qué indicadores se activan con mayor frecuencia?</li><li>¿Hay diferencias por sexo, antecedente familiar u otras características?</li><li>¿Cuántas banderas acumula un niño y cómo varía entre edades?</li></ol></div></div>
+<div id="g-fuentes" class="pg hide"><h2>03 · Fuentes de datos</h2><div class="two"><div class="card"><h3>Fuente primaria</h3><p><i>Autism Screening Data for Toddlers</i> (Thabtah, 2018), Kaggle. Datos recogidos con la app ASDTests (Thabtah, 2017). 1.054 registros, 19 columnas, sin nulos.</p></div><div class="card"><h3>Fuentes comparadas</h3><p>Datasets de niños, adolescentes y adultos de UCI y un archivo combinado de Kaggle. Se descartaron por edad, tamaño o etiqueta inconsistente.</p><a class="btn" data-go="p6" style="--c:var(--g)">Ver la comparación</a></div></div><div class="card" style="margin-top:12px"><h3>Referencias</h3><p class="note">Thabtah, F. (2018). <i>Autism screening data for toddlers</i>. Kaggle. · Thabtah, F. (2017). <i>ASDTests: A mobile app for ASD screening</i>. · Fayyad, U., Piatetsky-Shapiro, G., &amp; Smyth, P. (1996). From data mining to knowledge discovery in databases. <i>AI Magazine, 17</i>(3), 37–54.</p></div></div>
+<div id="g-dataset" class="pg hide"><h2>Datos</h2><div class="card"><p><b>Fuente:</b> <i>Autism Screening Data for Toddlers</i> (Thabtah, 2018), Kaggle. 1.054 registros y 19 columnas, sin valores nulos. Aplicado con la app ASDTests.</p><table><tr><th>Variable</th><th>Tipo</th><th>Descripción</th></tr><tr><td>A1 a A10</td><td>Binaria</td><td>Ítems del Q-CHAT-10 (1 = bandera roja)</td></tr><tr><td>Age_Mons</td><td>Cuantitativa</td><td>Edad en meses (12 a 36)</td></tr><tr><td>Qchat-10-Score</td><td>Cuantitativa</td><td>Puntaje de 0 a 10</td></tr><tr><td>Sex · Ethnicity</td><td>Cualitativa</td><td>Sexo y etnia</td></tr><tr><td>Jaundice · Family_mem_with_ASD</td><td>Cualitativa</td><td>Ictericia y antecedente familiar</td></tr><tr><td>Who completed the test</td><td>Cualitativa</td><td>Quién respondió</td></tr><tr><td>Class/ASD Traits</td><td>Cualitativa</td><td>Alerta si el puntaje es mayor a 3</td></tr></table><p class="note">El archivo ya está precargado. En el menú lateral del tablero («Comparar datasets») lo comparas con otros datasets.</p></div><div class="card" style="margin-top:12px"><h3>Requisitos mínimos</h3><p>✔ Más de 100 registros (1.054) · ✔ Variables cuantitativas y cualitativas · ✔ Fuente verificable y documentada</p></div><section id="subir" style="margin-top:26px"><h3>Subir otro archivo (opcional)</h3><div class="card" id="up"><label for="f" style="margin-top:0">Archivo CSV (<i>Toddler Autism dataset July 2018.csv</i> o el archivo depurado)</label><input type="file" id="f" accept=".csv,text/csv,text/plain"><div id="st" class="note" style="margin-top:8px">Dataset precargado: <i>Toddler Autism dataset July 2018.csv</i>. Puedes subir otro CSV con el mismo formato para recalcular todo el tablero; los datos se procesan en tu navegador y no se envían a ningún servidor.</div></div></section></div>
+<div id="g-form" class="pg hide"><h2>➕ Agregar un nuevo caso</h2><p class="mu">Responde sobre el niño con el formato del dataset. El caso se suma a los datos y todo el tablero se recalcula al instante. Es una versión simplificada del Q-CHAT-10 con fines académicos, no el instrumento clínico. No escribas nombres ni datos que identifiquen al niño.</p>
+<h3>1. Conductas observadas (A1 a A10)</h3><div id="qs"></div><p>Puntaje: <span class="sc" id="fsc">0 / 10 · sin alerta</span></p>
+<h3 style="margin-top:16px">2. Datos del niño</h3><div class="card"><div class="two"><div><label for="fe">Edad en meses (12 a 36)</label><input type="number" id="fe" min="12" max="36" placeholder="Ej. 24"><label for="fs">Sexo</label><select id="fs"><option value="">Selecciona…</option><option value="f">Femenino</option><option value="m">Masculino</option></select><label for="fn">Etnia</label><select id="fn"><option value="">Selecciona…</option><option value="White European">Blanco europeo</option><option value="asian">Asiático</option><option value="middle eastern">Medio Oriente</option><option value="south asian">Sur de Asia</option><option value="black">Negro</option><option value="Hispanic">Hispano</option><option value="Latino">Latino</option><option value="mixed">Mixto</option><option value="Pacifica">Pacífico</option><option value="Native Indian">Indígena</option><option value="others">Otros</option></select></div><div><label for="fj">Ictericia al nacer</label><select id="fj"><option value="">Selecciona…</option><option value="yes">Sí</option><option value="no">No</option></select><label for="ff">Antecedente familiar de TEA</label><select id="ff"><option value="">Selecciona…</option><option value="yes">Sí</option><option value="no">No</option></select><label for="fw">Quién responde el cuestionario</label><select id="fw"><option value="">Selecciona…</option><option value="family member">Un familiar</option><option value="Health Care Professional">Profesional de salud</option><option value="Self">Autorreporte</option><option value="Others">Otros</option></select></div></div></div>
+<p style="margin-top:14px"><button class="btn big" id="fadd" style="--c:var(--g)">Agregar al dataset</button></p><div id="fmsg"></div>
+<h3 style="margin-top:22px">Casos agregados con el formulario</h3><div class="card"><div id="flist" class="note">Aún no hay casos agregados.</div><p style="margin:12px 0 0"><button class="btn" id="fdl" style="--c:var(--b)">Descargar CSV completo</button> <button class="btn alt" id="fclr">Borrar los casos agregados</button></p><p class="note">Los casos se guardan solo en este navegador. La descarga funciona cuando la página está publicada en tu propio sitio (por ejemplo GitHub Pages).</p></div></div>
+<div id="g-limites" class="pg hide"><h2>¿Quieres saber más?</h2><div class="two"><div class="card"><h3>Objetivo</h3><p>Caracterizar las banderas rojas de un conjunto de cuestionarios Q-CHAT-10 para fundamentar la detección temprana de alteraciones socioemocionales.</p><h3>Metodología</h3><ol><li>Elección del desafío y preguntas analíticas.</li><li>Búsqueda y validación del dataset.</li><li>Depuración y análisis exploratorio.</li><li>Informe y tablero (descriptiva, diagnóstica, predictiva y prescriptiva).</li></ol></div><div class="card"><h3>Limitaciones</h3><ul><li>La clase se calcula con el puntaje (mayor a 3): cruzarla con él es circular.</li><li>Muestra autoseleccionada de una app; sin ubicación ni fecha.</li><li>El 96,6 % lo respondió un familiar.</li><li>Las diferencias son asociaciones, no causas.</li></ul><h3>Referencias</h3><p class="note">Thabtah, F. (2018). <i>Autism screening data for toddlers</i>. Kaggle. · Fayyad, U., Piatetsky-Shapiro, G., &amp; Smyth, P. (1996). From data mining to knowledge discovery in databases. <i>AI Magazine, 17</i>(3), 37–54.</p></div></div></div>
+<div id="g-aprende" class="pg hide"><h2>Aprende</h2><div class="two"><div class="card"><h3>Q-CHAT-10</h3><p>Cuestionario de diez ítems que responde el cuidador. Cada conducta atípica suma un punto; más de 3 puntos indican alerta.</p></div><div class="card"><h3>Tamizaje vs. diagnóstico</h3><p>El tamizaje detecta señales para derivar a valoración profesional. No confirma ninguna condición.</p></div><div class="card"><h3>AUC</h3><p>Mide qué tan bien un modelo ordena los casos: 0,5 es azar y 1,0 es perfecto.</p></div><div class="card"><h3>Riesgo relativo (RR)</h3><p>Compara el % en alerta de un segmento con el del resto. RR de 1,2 significa 20 % más alertas.</p></div><div class="card"><h3>Chi-cuadrado</h3><p>Prueba si una diferencia entre grupos podría deberse al azar. Un p menor a 0,05 sugiere asociación.</p></div><div class="card"><h3>Curva de ganancia</h3><p>Muestra qué parte de las alertas se capta al priorizar a una fracción de los niños.</p></div></div></div>
+<div id="app" class="hide shell">
+<nav class="side" id="tabs" aria-label="Menú de análisis"><h4>Datos</h4><button data-p="p0" class="on">Depuración</button><button data-p="p6">Comparar datasets</button><h4>Analítica</h4><button data-p="p1">1 · Descriptiva</button><button data-p="p4">2 · Diagnóstica</button><button data-p="p2">3 · Predictiva</button><button data-p="p3">4 · Prescriptiva</button><h4>Presentación</h4><button data-p="p5">Guion ejecutivo</button><h4>Umbrales de alerta</h4><label for="tc">Crítico: ≥ <b id="vtc">75</b> %</label><input type="range" id="tc" min="50" max="95" value="75"><label for="tw">Atención: ≥ <b id="vtw">65</b> %</label><input type="range" id="tw" min="40" max="90" value="65"></nav>
+<div><div class="flags" id="flags"></div><section id="p0"></section><section id="p1" class="hide"></section><section id="p4" class="hide"></section><section id="p2" class="hide"></section><section id="p3" class="hide"></section><section id="p5" class="hide"></section><section id="p6" class="hide"></section></div>
+</div>
+</main>
+<footer class="ft"><div><div><b>BanderasRojas</b><p>Bitácora técnica del Proyecto de Aula «Analítica de Datos para la Transformación Social»</p></div><div><b>Equipo</b><p>Integrantes: [nombres del equipo]</p><p>Docente: [nombre del docente]</p></div><div><b>Datos</b><p>Thabtah (2018), Kaggle · Q-CHAT-10</p><p>© 2026 · Tamizaje, no diagnóstico</p></div></div></footer>
+<script type="text/plain" id="d1">Case_No,A1,A2,A3,A4,A5,A6,A7,A8,A9,A10,Age_Mons,Qchat-10-Score,Sex,Ethnicity,Jaundice,Family_mem_with_ASD,Who completed the test,"Class/ASD Traits "
+1,0,0,0,0,0,0,1,1,0,1,28,3,f,middle eastern,yes,no,family member,No
+2,1,1,0,0,0,1,1,0,0,0,36,4,m,White European,yes,no,family member,Yes
+3,1,0,0,0,0,0,1,1,0,1,36,4,m,middle eastern,yes,no,family member,Yes
+4,1,1,1,1,1,1,1,1,1,1,24,10,m,Hispanic,no,no,family member,Yes
+5,1,1,0,1,1,1,1,1,1,1,20,9,f,White European,no,yes,family member,Yes
+6,1,1,0,0,1,1,1,1,1,1,21,8,m,black,no,no,family member,Yes
+7,1,0,0,1,1,1,0,0,1,0,33,5,m,asian,yes,no,family member,Yes
+8,0,1,0,0,1,0,1,1,1,1,33,6,m,asian,yes,no,family member,Yes
+9,0,0,0,0,0,0,1,0,0,1,36,2,m,asian,no,no,family member,No
+10,1,1,1,0,1,1,0,1,1,1,22,8,m,south asian,no,no,Health Care Professional,Yes
+11,1,0,0,1,0,1,1,0,1,1,36,6,m,Hispanic,yes,yes,family member,Yes
+12,1,1,1,1,0,1,1,1,0,1,17,8,m,middle eastern,yes,no,family member,Yes
+13,0,0,0,0,0,0,0,0,0,0,25,0,f,middle eastern,yes,no,family member,No
+14,1,1,1,1,0,0,1,0,1,1,15,7,f,middle eastern,yes,no,family member,Yes
+15,0,0,0,0,0,0,0,0,0,0,18,0,m,middle eastern,no,no,family member,No
+16,1,1,1,0,1,0,1,1,0,1,12,7,m,black,no,no,family member,Yes
+17,0,0,0,0,0,0,0,0,0,0,36,0,m,middle eastern,no,yes,family member,No
+18,1,1,1,0,1,1,1,1,0,1,12,8,f,middle eastern,yes,no,family member,Yes
+19,1,0,0,0,1,0,0,0,0,1,29,3,f,middle eastern,no,no,family member,No
+20,1,1,1,0,1,0,1,1,0,1,12,7,f,black,no,no,family member,Yes
+21,1,0,0,1,1,1,1,1,1,0,36,7,m,middle eastern,no,no,family member,Yes
+22,1,0,1,1,1,1,1,0,1,0,36,7,m,middle eastern,no,no,family member,Yes
+23,1,0,1,1,0,1,0,1,1,1,36,7,m,Native Indian,yes,yes,Health Care Professional,Yes
+24,1,1,1,0,1,1,0,1,1,0,36,7,m,middle eastern,yes,yes,family member,Yes
+25,1,1,1,1,1,1,1,1,1,0,22,9,m,White European,no,no,family member,Yes
+26,0,0,0,0,0,0,0,0,0,0,24,0,f,middle eastern,no,no,family member,No
+27,1,1,0,1,1,1,1,1,0,1,36,8,m,middle eastern,no,no,family member,Yes
+28,1,1,1,1,1,1,1,1,1,1,35,10,m,Others,yes,no,family member,Yes
+29,0,0,1,1,1,0,1,1,1,1,36,7,m,middle eastern,no,yes,family member,Yes
+30,0,0,0,0,0,0,0,0,0,0,32,0,m,middle eastern,yes,no,family member,No
+31,0,0,0,0,0,0,0,0,0,0,18,0,f,middle eastern,no,no,family member,No
+32,0,0,0,0,0,0,0,0,0,0,12,0,f,middle eastern,no,no,family member,No
+33,0,0,0,0,0,0,0,0,0,1,15,1,f,middle eastern,no,no,Health care professional,No
+34,0,0,0,0,0,0,0,0,0,0,12,0,f,middle eastern,no,no,family member,No
+35,0,0,0,0,0,0,0,0,0,1,12,1,f,middle eastern,no,no,family member,No
+36,1,1,1,1,1,1,1,1,1,1,15,10,f,middle eastern,no,no,family member,Yes
+37,0,0,0,0,0,0,0,0,0,1,15,1,f,middle eastern,no,no,family member,No
+38,0,0,0,0,0,0,0,0,0,0,15,0,f,middle eastern,no,no,family member,No
+39,0,0,0,0,0,0,0,0,0,0,15,0,f,middle eastern,no,no,family member,No
+40,0,0,0,0,0,0,0,0,0,1,15,1,f,middle eastern,no,no,family member,No
+41,0,0,0,0,0,0,0,0,0,1,12,1,f,middle eastern,no,no,family member,No
+42,0,0,0,0,0,0,0,0,0,0,15,0,f,black,no,no,family member,No
+43,0,0,0,0,0,0,0,0,0,0,15,0,f,black,no,no,family member,No
+44,0,0,0,0,0,0,0,0,0,0,15,0,f,middle eastern,no,no,family member,No
+45,0,0,0,0,0,0,0,0,0,1,15,1,f,middle eastern,no,no,family member,No
+46,0,0,0,0,0,0,1,0,0,1,19,2,m,asian,no,no,family member,No
+47,0,0,0,0,0,0,0,0,0,1,18,1,m,middle eastern,yes,no,family member,No
+48,0,0,0,0,0,0,0,0,0,1,12,1,f,White European,no,no,family member,No
+49,0,0,0,0,0,0,0,0,0,1,14,1,f,White European,no,no,family member,No
+50,0,0,0,0,0,0,0,0,0,1,14,1,f,middle eastern,no,no,Self,No
+51,0,0,0,0,0,0,0,0,0,1,12,1,m,middle eastern,no,no,family member,No
+52,0,0,0,0,0,0,0,0,0,1,12,1,f,middle eastern,no,no,family member,No
+53,0,0,0,0,0,0,0,0,0,1,15,1,f,middle eastern,no,no,family member,No
+54,1,1,1,1,1,1,1,1,1,1,12,10,f,middle eastern,no,no,family member,Yes
+55,0,0,0,0,0,0,0,0,0,1,12,1,f,black,no,no,family member,No
+56,0,0,1,1,0,1,1,0,1,1,36,6,f,White European,no,no,family member,Yes
+57,1,0,0,0,0,1,1,0,1,1,32,5,f,south asian,no,no,family member,Yes
+58,0,0,0,1,1,1,1,1,1,0,25,6,m,asian,no,no,family member,Yes
+59,0,0,0,0,0,0,0,1,0,1,15,2,f,White European,no,no,family member,No
+60,0,0,0,0,0,0,0,0,0,1,13,1,f,middle eastern,no,no,family member,No
+61,0,0,0,0,0,0,0,0,0,1,13,1,f,middle eastern,no,no,family member,No
+62,0,0,0,0,0,0,0,0,0,1,12,1,f,middle eastern,no,no,family member,No
+63,1,1,0,0,1,1,1,1,1,1,36,8,m,White European,yes,no,family member,Yes
+64,0,0,1,1,1,1,1,0,0,0,30,5,m,White European,no,no,family member,Yes
+65,0,0,1,1,0,0,0,0,1,0,36,3,m,middle eastern,yes,yes,family member,No
+66,1,1,1,1,1,1,1,0,1,1,12,9,f,White European,no,yes,family member,Yes
+67,0,0,0,0,1,0,1,1,0,1,36,4,f,middle eastern,yes,no,family member,Yes
+68,0,0,0,0,0,0,0,1,0,0,29,1,m,White European,no,yes,family member,No
+69,1,0,1,0,0,0,0,0,0,0,23,2,m,south asian,no,yes,family member,No
+70,1,0,1,1,1,1,1,0,1,1,18,8,f,asian,yes,yes,family member,Yes
+71,1,1,0,0,1,1,1,1,0,0,34,6,m,Others,no,no,family member,Yes
+72,0,0,1,1,1,1,1,0,1,1,34,7,m,asian,no,no,family member,Yes
+73,1,1,1,1,1,1,1,1,1,1,21,10,f,White European,no,no,family member,Yes
+74,0,0,0,0,0,0,0,1,0,0,30,1,m,middle eastern,no,no,family member,No
+75,1,1,0,0,1,0,1,0,0,0,26,4,m,asian,no,no,family member,Yes
+76,1,0,0,1,1,1,1,1,1,0,19,7,m,middle eastern,no,no,family member,Yes
+77,0,0,0,0,0,0,0,0,0,0,36,0,m,asian,no,no,family member,No
+78,0,0,0,0,0,0,0,0,0,0,36,0,m,asian,no,no,family member,No
+79,0,0,0,0,0,0,0,0,0,0,36,0,m,asian,no,no,family member,No
+80,1,0,0,0,0,0,0,1,0,1,30,3,m,middle eastern,no,no,Health Care Professional,No
+81,0,1,0,0,0,0,0,0,0,1,30,2,m,middle eastern,no,no,family member,No
+82,1,0,1,1,0,1,1,1,1,0,29,7,m,asian,no,no,family member,Yes
+83,1,1,0,1,1,1,1,1,0,1,36,8,f,White European,yes,no,family member,Yes
+84,1,0,1,1,0,1,1,1,1,0,30,7,m,asian,no,no,family member,Yes
+85,1,1,0,1,0,1,1,0,0,1,30,6,m,middle eastern,no,no,family member,Yes
+86,0,0,0,1,1,1,0,0,1,1,23,5,m,White European,yes,yes,family member,Yes
+87,0,0,0,0,0,0,0,0,0,0,22,0,m,middle eastern,yes,yes,family member,No
+88,0,0,0,1,0,0,1,0,0,1,20,3,m,middle eastern,no,no,family member,No
+89,1,0,0,0,1,0,1,0,1,0,34,4,m,asian,no,no,family member,Yes
+90,1,1,1,1,1,1,1,1,1,0,34,9,m,asian,no,no,family member,Yes
+91,0,0,0,0,0,0,0,0,0,1,34,1,m,asian,no,no,family member,No
+92,1,0,0,0,0,0,1,0,0,1,34,3,m,asian,no,no,family member,No
+93,1,1,0,0,1,1,1,1,1,0,32,7,m,asian,no,no,family member,Yes
+94,0,0,0,0,0,0,0,1,0,0,36,1,f,Others,yes,yes,family member,No
+95,0,0,0,1,0,0,1,1,1,1,33,5,m,asian,no,no,family member,Yes
+96,0,1,0,0,0,0,0,0,0,1,12,2,f,middle eastern,no,no,family member,No
+97,1,0,1,1,1,1,1,0,1,1,24,8,f,asian,no,no,family member,Yes
+98,1,0,0,0,1,0,1,1,1,1,34,6,m,asian,no,no,family member,Yes
+99,0,0,0,0,0,0,0,0,0,1,34,1,m,asian,no,no,family member,No
+100,0,0,0,0,0,0,0,0,0,1,31,1,f,Others,no,no,family member,No
+101,0,0,1,1,0,0,0,0,0,0,24,2,m,middle eastern,no,no,family member,No
+102,0,0,0,0,0,1,1,1,0,1,31,4,f,middle eastern,no,yes,family member,Yes
+103,1,0,0,1,0,1,1,0,0,1,31,5,f,middle eastern,yes,no,family member,Yes
+104,1,1,0,0,0,0,0,1,1,0,36,4,m,middle eastern,no,no,family member,Yes
+105,1,1,0,0,0,1,0,0,0,1,31,4,f,middle eastern,yes,no,family member,Yes
+106,1,1,1,1,1,1,1,1,1,0,25,9,m,middle eastern,no,no,family member,Yes
+107,0,0,0,0,0,0,0,0,0,1,23,1,f,middle eastern,yes,no,family member,No
+108,1,1,0,0,1,1,0,1,0,1,24,6,m,middle eastern,no,no,family member,Yes
+109,1,1,0,0,1,1,1,1,0,1,36,7,f,middle eastern,no,no,family member,Yes
+110,0,0,0,0,0,0,0,0,0,1,36,1,f,middle eastern,no,no,family member,No
+111,0,0,0,0,1,0,1,0,0,0,12,2,m,middle eastern,no,no,family member,No
+112,0,1,0,0,0,0,1,1,0,1,36,4,m,south asian,no,no,family member,Yes
+113,0,0,0,0,0,0,1,1,0,0,32,2,m,asian,no,no,family member,No
+114,0,0,0,0,0,0,1,1,0,0,32,2,m,asian,no,no,family member,No
+115,1,1,0,0,1,1,1,0,1,1,30,7,m,White European,yes,yes,family member,Yes
+116,0,0,1,1,1,1,1,1,1,1,32,8,m,asian,no,no,family member,Yes
+117,0,0,1,1,0,0,1,0,0,1,32,4,m,asian,no,no,family member,Yes
+118,1,1,1,1,1,1,1,1,1,1,29,10,m,White European,no,no,family member,Yes
+119,1,1,0,0,0,1,0,0,0,0,28,3,m,middle eastern,no,no,family member,No
+120,1,1,0,1,1,1,0,0,0,1,18,6,m,Hispanic,yes,yes,family member,Yes
+121,0,1,0,1,1,0,1,0,0,1,27,5,m,asian,no,no,family member,Yes
+122,0,1,0,0,0,1,1,1,0,1,27,5,f,White European,no,yes,family member,Yes
+123,0,0,0,0,0,0,0,1,0,0,26,1,f,White European,yes,no,family member,No
+124,0,0,0,0,0,1,0,0,0,0,25,1,f,asian,no,no,family member,No
+125,1,1,0,1,1,1,1,0,1,1,19,8,m,White European,no,no,family member,Yes
+126,1,0,0,0,1,0,1,1,1,1,36,6,m,asian,no,no,family member,Yes
+127,0,0,0,0,0,0,0,0,0,1,25,1,f,White European,no,no,family member,No
+128,0,0,0,0,0,0,0,0,0,1,36,1,m,middle eastern,no,no,family member,No
+129,0,0,1,1,1,1,1,0,0,1,17,6,f,White European,yes,no,family member,Yes
+130,1,1,0,1,1,1,1,0,0,1,36,7,m,middle eastern,no,no,family member,Yes
+131,1,1,1,0,1,1,1,0,0,1,36,7,f,asian,no,no,family member,Yes
+132,1,0,1,1,1,0,0,1,1,1,20,7,m,asian,no,no,family member,Yes
+133,0,0,0,0,0,0,0,0,0,0,33,0,f,south asian,yes,no,family member,No
+134,1,0,0,0,1,0,0,0,0,0,33,2,f,south asian,yes,no,family member,No
+135,1,1,0,0,1,0,0,1,0,0,33,4,f,south asian,yes,yes,family member,Yes
+136,0,0,0,0,1,0,0,0,0,0,34,1,f,south asian,yes,no,family member,No
+137,1,1,1,1,1,1,1,1,1,1,24,10,m,middle eastern,yes,no,family member,Yes
+138,0,0,1,1,1,0,0,0,1,0,36,4,m,asian,yes,no,family member,Yes
+139,1,1,1,1,1,1,1,1,1,0,35,9,m,south asian,no,no,family member,Yes
+140,1,1,0,0,0,0,0,1,1,0,26,4,f,asian,yes,no,family member,Yes
+141,1,1,1,1,1,1,1,1,1,0,23,9,m,south asian,no,no,family member,Yes
+142,1,1,0,1,1,0,1,0,1,1,24,7,m,middle eastern,no,no,family member,Yes
+143,1,1,0,0,0,1,0,1,0,1,36,5,f,White European,no,no,family member,Yes
+144,0,1,0,0,0,0,1,0,0,1,36,3,f,asian,no,no,family member,No
+145,0,0,0,0,1,1,1,0,0,0,26,3,f,middle eastern,yes,no,family member,No
+146,1,1,1,1,1,1,1,1,1,0,23,9,m,asian,no,no,family member,Yes
+147,1,1,0,1,1,1,0,1,1,0,23,7,m,asian,no,no,family member,Yes
+148,0,0,0,0,0,0,0,0,0,1,12,1,m,asian,no,no,family member,No
+149,0,0,0,0,0,0,1,0,0,0,30,1,f,Latino,no,yes,family member,No
+150,1,0,0,0,0,0,0,1,0,0,19,2,m,White European,no,no,family member,No
+151,0,0,0,0,0,0,0,1,0,1,36,2,f,asian,no,no,Health care professional,No
+152,0,1,0,1,0,0,1,0,0,1,33,4,m,asian,no,no,family member,Yes
+153,0,0,0,1,0,0,1,0,0,1,33,3,m,asian,no,no,family member,No
+154,1,1,1,1,1,1,1,1,1,0,26,9,m,White European,no,no,family member,Yes
+155,1,1,0,1,0,0,1,0,0,1,33,5,m,asian,no,no,family member,Yes
+156,1,1,0,1,1,1,1,1,1,1,36,9,m,middle eastern,no,no,family member,Yes
+157,1,1,1,1,1,1,1,0,1,1,24,9,f,White European,no,yes,family member,Yes
+158,0,0,1,1,1,1,0,1,1,0,28,6,m,middle eastern,no,no,family member,Yes
+159,0,1,1,1,0,1,0,1,0,1,36,6,m,asian,no,no,family member,Yes
+160,0,1,1,1,0,1,1,1,1,1,30,8,m,asian,no,no,family member,Yes
+161,0,1,0,1,1,1,1,1,1,1,23,8,m,White European,no,no,family member,Yes
+162,1,0,1,1,1,1,0,0,1,0,12,6,m,White European,yes,no,family member,Yes
+163,1,1,1,1,1,1,1,0,1,1,29,9,m,White European,yes,no,family member,Yes
+164,0,0,0,0,1,1,1,0,0,0,22,3,m,White European,no,yes,family member,No
+165,0,0,0,0,0,0,1,0,0,0,12,1,m,asian,no,no,Health Care Professional,No
+166,0,0,0,0,0,0,0,0,0,1,36,1,f,Others,no,yes,family member,No
+167,0,1,0,0,0,0,1,0,0,1,36,3,f,asian,no,no,family member,No
+168,0,0,0,0,0,0,1,0,0,0,30,1,f,White European,yes,yes,family member,No
+169,0,0,0,0,0,0,0,0,0,0,30,0,f,Latino,no,yes,family member,No
+170,0,0,0,0,0,0,0,0,0,0,36,0,m,mixed,no,no,family member,No
+171,0,0,0,1,1,1,0,0,0,0,19,3,f,mixed,no,no,family member,No
+172,0,1,1,1,1,0,1,0,1,1,23,7,m,middle eastern,no,no,family member,Yes
+173,0,0,0,0,0,0,0,0,0,1,12,1,m,middle eastern,no,yes,family member,No
+174,0,1,0,0,0,0,0,0,0,1,36,2,f,White European,yes,yes,family member,No
+175,0,1,0,0,0,0,0,0,0,1,36,2,f,White European,yes,yes,family member,No
+176,1,0,0,0,1,1,0,1,0,1,33,5,m,asian,no,yes,family member,Yes
+177,0,0,1,0,1,0,0,0,0,1,33,3,m,asian,no,yes,family member,No
+178,0,0,1,0,0,1,0,0,0,0,33,2,m,asian,no,yes,family member,No
+179,1,0,1,0,0,1,0,0,0,0,33,3,m,asian,no,yes,family member,No
+180,1,0,1,0,0,1,0,0,0,0,33,3,m,asian,no,yes,family member,No
+181,0,1,0,1,0,1,1,1,0,0,12,5,f,White European,no,no,family member,Yes
+182,0,0,0,1,0,0,0,0,0,0,30,1,m,south asian,yes,no,family member,No
+183,1,0,0,0,0,1,0,0,1,0,33,3,m,asian,no,yes,family member,No
+184,1,0,1,1,0,0,0,0,0,0,30,3,m,south asian,yes,no,family member,No
+185,1,0,1,1,1,1,1,1,1,1,35,9,m,asian,no,no,family member,Yes
+186,0,0,0,0,1,0,1,0,1,1,12,4,f,White European,yes,no,family member,Yes
+187,1,0,1,1,1,1,1,1,1,1,30,9,m,asian,yes,no,family member,Yes
+188,1,1,0,0,0,0,0,0,0,1,32,3,m,White European,no,yes,family member,No
+189,0,1,0,0,0,0,0,0,0,1,31,2,m,White European,yes,no,family member,No
+190,1,1,0,0,0,0,0,0,0,1,31,3,m,White European,yes,no,family member,No
+191,1,0,0,0,1,1,1,0,0,1,24,5,m,White European,no,yes,family member,Yes
+192,0,0,0,0,0,0,1,1,0,1,27,3,f,south asian,no,no,family member,No
+193,1,1,0,0,0,0,1,0,0,1,27,4,f,south asian,no,no,family member,Yes
+194,0,0,0,1,0,0,0,0,0,0,36,1,m,middle eastern,no,no,Health Care Professional,No
+195,1,0,0,1,0,1,0,0,0,0,36,3,m,middle eastern,no,no,Health Care Professional,No
+196,1,1,1,1,0,1,1,0,1,1,36,8,f,asian,yes,no,family member,Yes
+197,1,1,0,1,0,1,1,0,1,0,36,6,f,asian,yes,no,family member,Yes
+198,1,1,0,0,0,1,1,1,1,1,20,7,m,middle eastern,no,no,family member,Yes
+199,1,0,1,1,1,1,1,0,1,1,20,8,m,asian,no,no,family member,Yes
+200,0,1,1,0,1,0,1,0,0,1,35,5,m,middle eastern,no,yes,family member,Yes
+201,1,1,1,1,1,1,1,1,0,1,36,9,f,asian,no,no,family member,Yes
+202,1,1,1,1,0,1,1,1,1,1,30,9,f,black,no,no,family member,Yes
+203,1,0,1,1,1,1,1,0,0,1,30,7,f,black,no,no,family member,Yes
+204,1,0,0,0,0,0,1,1,0,1,34,4,m,White European,yes,yes,family member,Yes
+205,1,1,1,1,0,1,1,1,0,0,36,7,m,Latino,yes,no,family member,Yes
+206,1,1,0,0,0,0,1,0,0,1,15,4,m,middle eastern,yes,no,family member,Yes
+207,1,1,1,1,1,1,1,0,1,1,36,9,m,White European,no,yes,family member,Yes
+208,0,0,0,1,1,1,1,1,0,0,36,5,m,White European,no,no,family member,Yes
+209,0,1,0,1,0,1,0,0,0,0,15,3,m,middle eastern,yes,no,family member,No
+210,0,0,0,0,1,0,0,0,0,1,36,2,m,south asian,no,no,family member,No
+211,0,1,1,1,0,0,0,0,0,0,30,3,m,asian,no,no,family member,No
+212,1,1,0,0,1,1,1,1,1,0,36,7,m,asian,no,no,family member,Yes
+213,0,1,0,0,1,1,1,1,1,1,36,7,f,middle eastern,no,no,family member,Yes
+214,1,1,1,1,1,1,1,1,1,1,16,10,f,White European,yes,no,family member,Yes
+215,0,0,0,0,0,0,1,1,1,1,25,4,m,Hispanic,no,no,family member,Yes
+216,0,0,0,1,0,0,0,1,0,1,35,3,m,middle eastern,no,no,family member,No
+217,0,0,0,0,0,1,0,0,1,1,13,3,f,middle eastern,no,no,family member,No
+218,1,1,1,1,1,1,1,0,1,1,25,9,f,White European,no,yes,family member,Yes
+219,0,1,0,1,1,1,1,1,0,1,22,7,m,black,no,no,family member,Yes
+220,0,1,1,1,1,1,1,1,0,1,23,8,m,black,no,no,family member,Yes
+221,1,1,1,1,0,0,1,0,1,0,36,6,f,White European,no,no,family member,Yes
+222,0,0,0,0,0,0,0,0,0,1,28,1,m,middle eastern,no,no,family member,No
+223,1,1,0,0,0,0,0,1,0,1,36,4,m,White European,no,no,family member,Yes
+224,1,1,1,1,1,1,1,1,1,0,21,9,m,middle eastern,yes,no,family member,Yes
+225,1,1,1,1,1,1,1,1,0,1,22,9,m,black,no,no,family member,Yes
+226,0,0,0,0,1,0,1,1,0,1,30,4,f,asian,no,yes,family member,Yes
+227,1,1,0,1,0,0,1,1,1,1,13,7,m,black,yes,yes,family member,Yes
+228,1,0,0,1,1,0,1,1,1,1,20,7,f,middle eastern,no,no,family member,Yes
+229,1,1,0,1,1,1,1,1,1,1,22,9,f,asian,no,no,family member,Yes
+230,1,0,0,0,1,1,1,0,1,0,33,5,m,asian,no,no,Health Care Professional,Yes
+231,1,0,0,0,0,1,1,0,1,1,33,5,m,asian,no,no,family member,Yes
+232,1,0,1,1,1,1,1,1,1,1,36,9,m,asian,no,no,family member,Yes
+233,1,1,1,1,1,1,1,1,1,1,20,10,m,middle eastern,no,yes,family member,Yes
+234,0,1,0,1,1,0,0,0,1,0,36,4,m,asian,yes,no,family member,Yes
+235,0,0,0,1,1,1,1,1,0,1,36,6,m,asian,yes,no,family member,Yes
+236,0,0,0,0,0,0,1,0,0,1,12,2,f,White European,no,no,family member,No
+237,1,1,1,1,0,0,1,1,0,1,36,7,m,asian,no,no,family member,Yes
+238,0,0,0,0,0,0,0,0,0,0,31,0,m,White European,yes,no,family member,No
+239,1,0,0,0,1,1,1,1,0,0,31,5,m,White European,yes,no,family member,Yes
+240,0,0,0,0,0,1,1,1,0,0,31,3,m,White European,yes,no,family member,No
+241,1,1,1,1,1,1,1,1,1,1,15,10,f,middle eastern,no,no,family member,Yes
+242,0,1,1,1,1,1,0,1,1,0,19,7,f,middle eastern,no,no,family member,Yes
+243,1,0,1,1,1,1,0,1,1,0,19,7,f,middle eastern,no,no,family member,Yes
+244,0,0,0,0,0,0,0,0,0,1,19,1,f,middle eastern,no,no,family member,No
+245,1,1,1,0,1,1,0,0,1,0,24,6,m,White European,yes,no,family member,Yes
+246,0,1,1,1,1,0,1,1,1,1,28,8,m,south asian,yes,no,family member,Yes
+247,1,0,0,1,1,1,0,0,1,1,36,6,m,asian,no,no,family member,Yes
+248,1,1,1,0,0,1,1,1,1,1,28,8,m,middle eastern,no,yes,family member,Yes
+249,1,1,1,1,1,1,1,1,1,1,18,10,m,White European,yes,no,family member,Yes
+250,0,0,0,0,1,1,0,0,0,0,26,2,m,asian,no,no,family member,No
+251,1,1,0,1,1,1,1,1,1,1,36,9,m,black,no,yes,Health Care Professional,Yes
+252,0,0,0,0,1,0,1,1,1,0,23,4,f,asian,no,no,family member,Yes
+253,0,0,0,1,1,1,1,1,1,1,36,7,m,White European,no,no,family member,Yes
+254,1,1,1,1,1,1,1,1,0,0,36,8,m,asian,no,no,family member,Yes
+255,1,1,1,1,1,1,1,1,0,1,31,9,m,White European,no,no,family member,Yes
+256,1,1,1,1,1,1,1,1,0,1,31,9,m,White European,no,no,family member,Yes
+257,1,0,1,1,1,0,1,1,1,1,35,8,m,White European,no,yes,family member,Yes
+258,0,1,0,0,0,0,0,1,0,0,36,2,m,middle eastern,no,no,family member,No
+259,1,1,0,0,1,1,1,0,1,1,23,7,m,White European,yes,no,family member,Yes
+260,1,0,0,0,0,1,1,0,0,0,27,3,m,White European,yes,yes,family member,No
+261,1,1,1,0,0,1,1,0,1,1,33,7,f,mixed,no,no,family member,Yes
+262,1,1,1,1,1,1,1,1,1,0,36,9,m,White European,yes,yes,family member,Yes
+263,1,0,1,1,0,1,0,0,1,0,30,5,f,middle eastern,no,no,family member,Yes
+264,1,0,1,1,0,1,0,0,0,0,30,4,m,middle eastern,no,no,family member,Yes
+265,0,0,0,0,0,0,0,0,0,0,24,0,m,middle eastern,no,no,family member,No
+266,0,0,1,1,1,1,1,1,1,0,16,7,f,asian,no,no,family member,Yes
+267,0,0,0,0,1,1,1,0,0,0,36,3,m,asian,yes,no,family member,No
+268,0,1,0,0,1,1,1,1,0,1,36,6,m,asian,no,no,family member,Yes
+269,0,0,0,1,1,1,1,1,0,0,36,5,m,Latino,no,no,family member,Yes
+270,1,0,1,1,0,1,1,1,1,1,30,8,m,White European,no,no,family member,Yes
+271,0,0,0,0,0,0,0,0,0,0,36,0,m,mixed,no,no,family member,No
+272,1,1,0,1,0,0,1,0,0,1,29,5,m,black,no,no,family member,Yes
+273,1,0,1,0,0,1,0,0,0,0,36,3,m,asian,no,yes,family member,No
+274,1,0,1,0,0,1,0,0,0,0,36,3,m,asian,no,yes,family member,No
+275,1,1,0,1,1,1,1,0,1,1,32,8,m,asian,yes,no,family member,Yes
+276,1,1,0,0,0,1,1,0,1,0,32,5,m,asian,no,no,family member,Yes
+277,0,1,0,1,1,1,1,1,1,0,36,7,m,middle eastern,no,no,family member,Yes
+278,0,1,0,1,1,1,0,1,1,1,36,7,m,middle eastern,no,no,family member,Yes
+279,0,0,0,0,0,0,0,0,0,1,25,1,m,White European,yes,no,family member,No
+280,1,1,1,1,1,1,1,1,1,0,12,9,m,White European,yes,no,family member,Yes
+281,1,1,1,1,1,1,1,1,1,1,28,10,m,White European,no,no,family member,Yes
+282,1,1,1,1,1,1,1,1,1,0,27,9,m,White European,no,no,family member,Yes
+283,1,1,0,1,1,1,1,0,0,1,15,7,f,White European,yes,no,family member,Yes
+284,1,1,1,1,1,1,1,0,1,1,36,9,f,White European,yes,no,family member,Yes
+285,1,1,0,0,1,1,1,1,1,1,28,8,m,White European,no,no,family member,Yes
+286,1,1,0,0,0,0,0,0,0,1,24,3,f,Hispanic,no,no,family member,No
+287,0,0,0,0,1,1,1,0,0,1,31,4,m,Hispanic,yes,no,family member,Yes
+288,0,0,1,1,1,1,1,0,1,1,23,7,m,south asian,no,yes,family member,Yes
+289,1,1,0,0,0,0,1,0,1,0,36,4,m,White European,yes,no,family member,Yes
+290,1,1,0,0,0,1,1,0,0,1,26,5,m,White European,yes,no,family member,Yes
+291,0,0,0,0,0,0,1,0,0,0,36,1,f,asian,no,no,family member,No
+292,1,0,0,1,1,0,1,0,1,1,20,6,m,middle eastern,no,no,family member,Yes
+293,0,0,0,1,0,1,1,0,1,0,20,4,m,middle eastern,no,no,family member,Yes
+294,1,1,0,0,0,1,1,1,1,0,31,6,f,asian,yes,no,family member,Yes
+295,0,1,0,0,1,1,1,0,0,1,12,5,f,Hispanic,yes,yes,family member,Yes
+296,0,0,0,0,0,0,0,0,0,0,32,0,m,White European,yes,no,family member,No
+297,1,0,0,0,1,0,0,0,0,1,33,3,m,White European,no,no,family member,No
+298,1,1,1,1,0,1,1,1,1,0,36,8,m,middle eastern,yes,yes,family member,Yes
+299,1,1,1,1,1,1,1,0,1,1,17,9,m,Hispanic,yes,yes,family member,Yes
+300,1,1,1,1,0,1,1,1,0,1,24,8,f,Hispanic,no,yes,family member,Yes
+301,1,1,0,1,1,0,1,1,1,1,18,8,f,White European,no,no,family member,Yes
+302,1,0,1,1,1,1,1,1,1,1,26,9,m,Others,no,yes,family member,Yes
+303,1,1,0,1,1,0,1,1,1,0,23,7,m,asian,no,no,family member,Yes
+304,1,1,1,1,1,1,1,0,1,0,21,8,m,asian,no,no,family member,Yes
+305,1,0,1,1,0,1,1,1,1,0,36,7,m,White European,no,no,family member,Yes
+306,0,0,0,0,0,0,0,1,0,0,36,1,m,asian,no,no,family member,No
+307,0,0,0,0,1,1,1,0,1,1,33,5,m,White European,yes,no,family member,Yes
+308,1,1,1,1,1,1,1,1,1,1,33,10,m,asian,yes,no,family member,Yes
+309,1,1,0,0,1,1,1,0,0,0,36,5,m,White European,no,no,family member,Yes
+310,1,1,1,0,1,0,0,0,1,0,36,5,m,south asian,yes,yes,Health Care Professional,Yes
+311,0,0,0,0,1,1,1,1,1,1,36,6,m,White European,no,no,family member,Yes
+312,1,0,0,0,1,1,1,0,1,0,32,5,f,asian,yes,no,family member,Yes
+313,1,1,1,1,1,1,1,1,1,1,26,10,m,asian,no,no,family member,Yes
+314,0,0,0,0,0,0,0,0,0,0,36,0,f,asian,no,no,family member,No
+315,0,0,1,0,1,1,1,1,1,0,26,6,m,asian,no,no,family member,Yes
+316,0,0,1,0,1,0,1,1,1,1,26,6,m,asian,no,no,family member,Yes
+317,0,0,1,1,1,1,1,0,1,1,14,7,m,White European,yes,no,family member,Yes
+318,0,1,0,1,0,1,1,1,1,1,16,7,m,middle eastern,yes,yes,family member,Yes
+319,1,1,0,1,0,0,0,1,0,1,28,5,m,White European,yes,no,family member,Yes
+320,0,0,0,0,0,0,0,0,0,0,24,0,m,asian,no,no,family member,No
+321,0,0,0,0,0,0,0,0,0,0,21,0,m,asian,no,yes,family member,No
+322,0,1,0,0,1,1,1,0,1,0,30,5,m,asian,no,no,family member,Yes
+323,1,1,1,1,1,1,1,1,1,1,12,10,f,asian,no,no,family member,Yes
+324,1,1,1,1,1,1,1,1,1,1,32,10,m,White European,yes,no,family member,Yes
+325,1,1,0,0,1,0,1,0,0,0,31,4,m,White European,yes,no,family member,Yes
+326,1,1,0,0,0,1,1,0,1,0,23,5,m,White European,yes,no,family member,Yes
+327,1,0,0,1,0,1,0,0,0,0,29,3,f,middle eastern,no,no,family member,No
+328,0,1,1,1,1,1,0,1,1,0,12,7,m,black,yes,no,family member,Yes
+329,0,0,0,0,0,0,0,0,0,1,13,1,f,Hispanic,no,no,family member,No
+330,1,0,1,1,1,0,1,0,0,0,23,5,m,asian,no,no,family member,Yes
+331,0,0,1,1,1,1,1,1,1,0,36,7,m,asian,no,no,family member,Yes
+332,1,1,1,1,1,0,0,0,0,1,36,6,f,White European,yes,no,family member,Yes
+333,0,1,1,1,1,0,1,0,1,0,26,6,m,asian,no,no,family member,Yes
+334,1,0,0,0,0,1,1,1,0,1,36,5,f,White European,yes,no,family member,Yes
+335,0,1,1,1,0,0,0,1,0,0,36,4,m,asian,no,no,family member,Yes
+336,0,1,0,1,0,0,0,0,0,0,36,2,m,asian,no,no,family member,No
+337,0,0,0,1,0,0,0,1,0,0,36,2,m,asian,no,no,family member,No
+338,0,0,0,1,0,0,0,0,0,0,36,1,m,asian,no,no,family member,No
+339,1,1,1,1,1,1,1,1,1,1,33,10,m,White European,no,yes,family member,Yes
+340,1,0,1,1,1,1,1,1,1,1,36,9,m,Latino,no,no,family member,Yes
+341,1,1,1,1,1,1,1,1,1,1,28,10,m,White European,yes,no,family member,Yes
+342,1,1,0,0,1,1,0,1,1,1,36,7,f,White European,no,no,family member,Yes
+343,1,1,1,1,1,1,1,1,1,1,28,10,m,White European,no,no,family member,Yes
+344,1,1,1,1,1,0,1,1,1,1,12,9,m,asian,no,no,family member,Yes
+345,0,1,0,0,1,1,1,1,1,0,36,6,m,asian,no,no,family member,Yes
+346,0,0,0,0,1,1,1,1,1,1,36,6,m,asian,no,no,family member,Yes
+347,1,1,0,0,1,0,1,1,0,0,36,5,m,black,yes,no,family member,Yes
+348,1,1,0,0,1,0,1,1,1,0,36,6,m,south asian,no,no,family member,Yes
+349,0,1,0,0,0,1,1,0,1,0,36,4,m,asian,yes,no,family member,Yes
+350,0,0,0,0,0,0,0,0,0,1,13,1,f,middle eastern,yes,no,family member,No
+351,0,0,0,0,0,0,0,0,0,1,13,1,f,middle eastern,yes,no,family member,No
+352,0,0,0,0,0,0,0,0,0,1,13,1,f,middle eastern,yes,no,family member,No
+353,0,0,0,0,0,0,0,0,0,0,36,0,m,asian,no,no,family member,No
+354,1,0,1,1,1,1,0,1,0,0,34,6,m,asian,no,no,family member,Yes
+355,0,0,1,1,0,0,0,0,0,0,36,2,m,asian,no,no,family member,No
+356,1,1,1,1,1,1,1,1,0,0,24,8,m,black,yes,yes,Health Care Professional,Yes
+357,1,1,0,0,1,1,1,0,1,1,14,7,m,asian,no,no,family member,Yes
+358,1,1,0,1,1,1,1,0,1,0,14,7,m,asian,no,no,family member,Yes
+359,1,1,1,1,1,1,1,1,1,1,36,10,m,White European,no,no,Health Care Professional,Yes
+360,0,0,0,0,0,0,0,0,0,0,19,0,f,asian,no,yes,family member,No
+361,0,0,0,1,1,1,1,0,0,0,34,4,m,black,yes,no,family member,Yes
+362,1,1,1,0,1,1,1,1,1,0,36,8,m,asian,no,no,family member,Yes
+363,1,0,1,1,1,0,0,0,1,0,32,5,f,Hispanic,no,yes,family member,Yes
+364,1,1,0,0,1,1,1,1,0,1,36,7,m,asian,no,no,Health Care Professional,Yes
+365,1,1,1,1,1,1,1,1,0,1,36,9,m,Latino,yes,no,family member,Yes
+366,0,0,1,1,0,0,0,0,0,0,36,2,m,asian,no,no,family member,No
+367,1,1,1,1,1,1,0,1,1,1,36,9,m,asian,no,no,family member,Yes
+368,1,1,1,1,1,1,0,1,1,1,36,9,m,asian,no,no,family member,Yes
+369,1,1,0,0,0,1,1,1,1,1,36,7,f,asian,yes,no,family member,Yes
+370,1,1,0,1,0,1,1,0,0,1,27,6,f,south asian,no,no,family member,Yes
+371,1,1,1,1,1,1,1,1,1,1,36,10,m,south asian,no,no,family member,Yes
+372,1,1,1,1,0,1,1,0,1,0,17,7,f,White European,no,no,family member,Yes
+373,0,0,1,1,1,0,1,0,1,0,35,5,m,middle eastern,yes,no,family member,Yes
+374,0,0,1,1,1,1,0,0,1,0,30,5,m,asian,no,no,family member,Yes
+375,0,0,0,0,0,1,0,0,0,1,33,2,m,asian,no,no,family member,No
+376,0,0,0,1,1,0,1,0,0,1,30,4,m,asian,no,no,Health Care Professional,Yes
+377,1,1,1,1,0,1,1,1,0,1,36,8,f,middle eastern,no,no,family member,Yes
+378,1,0,0,1,1,1,1,0,1,0,30,6,m,asian,no,no,family member,Yes
+379,0,0,0,1,0,0,1,0,1,1,30,4,m,asian,no,no,family member,Yes
+380,1,0,0,0,0,0,1,0,0,1,30,3,f,south asian,no,no,family member,No
+381,1,0,0,0,0,1,1,0,0,1,30,4,m,Hispanic,no,no,family member,Yes
+382,1,1,1,1,0,1,1,1,1,0,24,8,m,black,yes,no,family member,Yes
+383,0,0,0,0,0,0,0,0,0,0,36,0,m,White European,no,no,family member,No
+384,0,0,0,0,0,1,0,0,0,0,36,1,m,White European,no,no,family member,No
+385,0,0,0,0,0,1,1,0,0,1,28,3,f,middle eastern,no,no,family member,No
+386,0,0,0,1,0,1,1,0,0,1,28,4,f,middle eastern,no,no,family member,Yes
+387,1,1,0,0,1,1,0,1,1,1,26,7,m,White European,yes,yes,family member,Yes
+388,0,0,1,1,0,0,0,1,0,1,36,4,m,asian,no,no,family member,Yes
+389,0,0,0,0,1,0,1,0,0,1,36,3,m,asian,yes,no,family member,No
+390,1,0,0,0,0,1,0,1,0,0,25,3,m,White European,no,no,family member,No
+391,1,1,1,1,1,0,1,1,1,1,32,9,m,asian,no,no,family member,Yes
+392,1,1,0,0,0,0,1,1,0,1,36,5,m,asian,no,no,family member,Yes
+393,1,1,0,1,1,1,1,0,0,1,36,7,m,asian,no,no,family member,Yes
+394,0,0,0,0,0,1,1,1,0,1,36,4,m,Latino,no,no,family member,Yes
+395,1,1,0,1,1,1,1,1,1,1,36,9,m,White European,no,yes,family member,Yes
+396,0,0,0,0,0,0,0,0,0,0,36,0,f,White European,no,yes,family member,No
+397,0,1,1,0,0,1,0,0,1,1,20,5,m,black,no,yes,family member,Yes
+398,1,0,0,0,1,1,0,1,0,1,26,5,m,White European,no,no,family member,Yes
+399,0,0,0,0,1,1,1,0,0,1,32,4,m,White European,yes,no,family member,Yes
+400,1,0,0,1,1,1,1,0,1,1,24,7,f,south asian,no,no,family member,Yes
+401,1,1,1,1,1,1,1,1,0,1,35,9,m,White European,no,yes,family member,Yes
+402,0,1,0,0,0,0,0,0,0,1,13,2,m,middle eastern,no,no,family member,No
+403,1,1,0,1,1,1,1,0,1,0,24,7,f,south asian,no,no,family member,Yes
+404,1,1,1,1,1,1,0,1,1,1,24,9,f,south asian,no,no,family member,Yes
+405,0,0,1,1,1,1,1,1,1,0,36,7,m,asian,no,no,family member,Yes
+406,0,0,1,1,1,1,1,1,1,0,36,7,m,asian,no,no,family member,Yes
+407,0,0,0,0,0,0,0,0,0,0,30,0,m,White European,no,no,family member,No
+408,1,0,1,0,1,1,0,1,1,0,36,6,m,asian,no,no,family member,Yes
+409,0,0,0,1,0,0,1,1,0,1,33,4,m,White European,yes,no,family member,Yes
+410,1,1,1,1,1,1,1,0,1,0,36,8,m,south asian,no,no,family member,Yes
+411,1,1,1,1,1,1,1,1,1,0,27,9,m,White European,no,no,family member,Yes
+412,0,0,0,0,1,1,1,1,0,0,29,4,m,Others,no,no,family member,Yes
+413,1,1,1,0,0,1,1,0,0,1,36,6,m,White European,no,no,family member,Yes
+414,0,1,0,0,0,0,0,0,0,1,33,2,m,asian,no,no,family member,No
+415,1,1,0,0,0,0,0,1,0,1,33,4,m,asian,no,no,Health Care Professional,Yes
+416,0,0,0,0,0,0,0,0,0,1,27,1,m,White European,no,no,family member,No
+417,0,1,1,1,1,1,1,0,1,1,12,8,m,asian,no,yes,family member,Yes
+418,1,0,0,0,1,1,1,1,0,0,30,5,f,asian,no,no,family member,Yes
+419,0,0,0,0,0,0,1,1,1,0,34,3,f,asian,no,no,family member,No
+420,1,1,0,0,1,1,1,1,1,1,36,8,m,Others,yes,no,family member,Yes
+421,1,0,0,1,1,1,0,0,1,1,36,6,m,asian,no,no,family member,Yes
+422,0,0,0,1,0,1,1,1,1,0,30,5,m,asian,no,no,family member,Yes
+423,0,0,1,0,1,0,0,1,0,0,36,3,m,asian,no,no,family member,No
+424,0,0,0,1,1,0,0,1,0,0,36,3,m,asian,no,no,family member,No
+425,1,1,0,1,0,0,1,1,1,1,15,7,m,White European,no,no,family member,Yes
+426,1,1,1,1,0,1,1,0,1,0,18,7,f,White European,no,no,family member,Yes
+427,1,0,0,0,0,1,1,1,0,1,36,5,m,asian,no,no,family member,Yes
+428,1,0,0,0,0,0,1,0,1,1,12,4,m,asian,no,no,family member,Yes
+429,0,0,1,1,0,0,1,0,1,0,26,4,m,south asian,yes,no,family member,Yes
+430,0,0,0,0,0,0,1,0,0,1,12,2,m,south asian,yes,no,family member,No
+431,1,1,0,1,1,1,1,1,1,1,36,9,m,White European,no,no,family member,Yes
+432,0,1,0,0,0,0,1,0,0,0,35,2,f,asian,yes,no,family member,No
+433,1,1,1,1,0,1,1,1,1,1,36,9,m,middle eastern,no,no,family member,Yes
+434,1,1,1,1,0,1,0,1,1,1,36,8,m,White European,no,no,family member,Yes
+435,1,0,0,0,0,0,1,1,1,1,36,5,f,asian,no,no,family member,Yes
+436,1,0,0,0,0,0,1,0,0,1,36,3,m,asian,no,no,family member,No
+437,1,1,0,0,0,1,0,0,1,0,30,4,m,south asian,yes,no,family member,Yes
+438,0,0,1,1,0,0,1,1,0,1,25,5,m,asian,no,no,family member,Yes
+439,1,1,0,1,0,1,1,0,0,1,14,6,f,White European,no,no,family member,Yes
+440,1,1,0,1,0,1,1,0,1,1,14,7,f,White European,no,no,family member,Yes
+441,1,1,0,1,0,1,1,0,1,1,26,7,f,White European,no,no,family member,Yes
+442,1,1,0,0,1,1,1,1,1,1,36,8,f,Others,yes,no,family member,Yes
+443,1,0,0,0,1,0,1,1,1,1,35,6,f,asian,no,yes,family member,Yes
+444,1,1,0,1,1,0,1,0,0,0,28,5,m,middle eastern,no,yes,family member,Yes
+445,1,1,0,1,1,1,1,0,0,0,28,6,m,middle eastern,no,yes,family member,Yes
+446,1,0,0,0,1,0,1,0,0,0,36,3,m,White European,no,no,family member,No
+447,0,0,0,0,0,0,0,0,0,0,36,0,m,middle eastern,no,yes,family member,No
+448,1,1,1,1,1,1,1,1,1,1,12,10,m,Pacifica,no,no,family member,Yes
+449,1,1,0,0,1,1,1,0,0,1,36,6,m,White European,yes,no,family member,Yes
+450,1,0,1,1,1,1,0,1,1,0,19,7,m,asian,no,no,family member,Yes
+451,0,0,1,1,1,1,1,1,1,1,24,8,f,White European,no,no,family member,Yes
+452,1,0,0,0,1,1,1,0,0,0,30,4,f,asian,yes,no,family member,Yes
+453,1,1,0,0,1,1,1,0,1,1,32,7,m,asian,yes,yes,family member,Yes
+454,1,0,0,1,1,1,1,1,1,1,35,8,m,asian,no,no,family member,Yes
+455,0,0,0,0,0,0,0,0,0,0,35,0,m,asian,no,no,family member,No
+456,1,0,1,1,1,1,0,1,1,1,29,8,m,middle eastern,no,no,family member,Yes
+457,1,0,1,0,0,1,0,1,0,0,36,4,m,asian,no,yes,family member,Yes
+458,1,0,0,0,0,1,0,0,0,0,36,2,m,asian,no,yes,family member,No
+459,1,0,0,0,0,1,0,0,0,0,36,2,m,asian,no,yes,family member,No
+460,0,0,0,1,0,0,1,0,1,1,15,4,f,middle eastern,yes,no,family member,Yes
+461,0,0,0,0,0,0,0,0,1,0,15,1,f,middle eastern,yes,no,family member,No
+462,0,1,0,0,0,0,1,0,0,0,36,2,m,middle eastern,no,yes,family member,No
+463,1,1,1,1,1,1,1,0,1,0,19,8,m,asian,no,no,family member,Yes
+464,0,0,1,0,0,1,1,1,1,1,24,6,m,Hispanic,no,yes,family member,Yes
+465,1,1,0,1,1,1,1,0,0,1,36,7,m,Hispanic,no,yes,family member,Yes
+466,0,0,1,1,1,0,1,1,1,1,13,7,m,White European,yes,yes,family member,Yes
+467,0,0,0,0,0,0,1,0,0,1,25,2,m,asian,no,no,family member,No
+468,1,1,1,1,1,1,1,1,1,1,13,10,m,White European,yes,yes,family member,Yes
+469,1,1,0,1,1,0,1,0,0,1,36,6,m,White European,no,no,Others,Yes
+470,1,1,0,1,0,0,1,0,0,0,36,4,m,White European,no,no,family member,Yes
+471,1,1,1,1,0,1,1,1,1,1,36,9,f,White European,yes,no,family member,Yes
+472,1,0,0,0,0,0,0,0,0,0,36,1,m,asian,no,yes,family member,No
+473,1,0,1,0,0,1,0,0,0,0,36,3,m,asian,no,yes,family member,No
+474,1,0,1,1,0,0,0,0,0,0,36,3,m,asian,no,yes,family member,No
+475,0,0,1,1,0,1,0,0,1,0,17,4,m,asian,no,no,family member,Yes
+476,0,0,1,1,0,0,0,0,0,0,17,2,m,asian,no,no,family member,No
+477,1,0,1,1,1,1,1,1,1,1,22,9,f,White European,no,no,family member,Yes
+478,0,0,1,1,1,0,1,1,0,0,20,5,m,White European,yes,no,family member,Yes
+479,1,1,0,0,0,1,0,0,0,1,36,4,m,White European,yes,no,Health Care Professional,Yes
+480,0,0,0,0,0,0,0,0,0,0,15,0,f,middle eastern,yes,no,family member,No
+481,1,1,1,1,1,1,1,1,1,0,36,9,f,south asian,yes,no,family member,Yes
+482,1,1,1,1,1,1,1,1,1,1,28,10,m,White European,no,no,family member,Yes
+483,1,0,0,0,1,1,1,1,1,1,30,7,f,asian,yes,no,family member,Yes
+484,1,0,0,0,0,1,1,1,1,1,30,6,f,asian,no,no,family member,Yes
+485,1,1,1,1,1,1,1,0,1,1,28,9,m,middle eastern,no,no,family member,Yes
+486,1,1,0,1,0,1,1,1,1,0,26,7,m,Hispanic,no,yes,family member,Yes
+487,1,1,1,1,1,1,0,0,1,1,28,8,m,Pacifica,no,no,family member,Yes
+488,1,1,1,1,1,1,1,0,1,1,36,9,f,Others,no,no,Self,Yes
+489,1,0,0,0,1,1,1,1,1,0,36,6,m,Hispanic,no,no,family member,Yes
+490,0,0,0,0,0,1,0,0,0,1,12,2,f,Hispanic,no,no,Health care professional,No
+491,1,1,1,1,1,1,1,1,1,1,28,10,m,black,no,no,family member,Yes
+492,1,1,1,1,1,1,1,1,1,1,36,10,m,black,no,no,family member,Yes
+493,1,0,0,1,1,0,1,0,1,1,28,6,m,White European,yes,no,family member,Yes
+494,0,0,0,0,0,0,1,0,0,0,28,1,m,White European,yes,no,family member,No
+495,0,1,1,1,1,1,0,1,1,0,24,7,f,asian,yes,no,family member,Yes
+496,1,1,1,1,1,1,1,1,1,1,34,10,m,Native Indian,yes,no,family member,Yes
+497,0,0,0,1,0,1,1,0,0,0,12,3,f,White European,no,no,family member,No
+498,1,1,1,1,1,0,1,1,1,0,32,8,m,black,no,no,family member,Yes
+499,1,0,0,1,1,1,0,0,0,1,29,5,m,White European,yes,no,family member,Yes
+500,1,0,0,0,1,1,1,1,1,0,27,6,m,White European,yes,yes,family member,Yes
+501,1,1,1,1,1,1,1,1,1,1,25,10,m,White European,no,no,family member,Yes
+502,1,1,0,0,1,0,0,0,0,1,36,4,m,White European,yes,no,family member,Yes
+503,0,1,1,1,1,1,1,0,1,1,12,8,m,White European,no,yes,family member,Yes
+504,1,1,0,1,1,1,0,1,1,0,36,7,m,White European,no,no,family member,Yes
+505,1,0,1,0,1,0,0,0,0,0,36,3,m,White European,no,no,family member,No
+506,0,1,1,0,0,0,0,1,0,1,36,4,m,south asian,no,no,family member,Yes
+507,0,1,0,1,0,1,0,0,1,0,36,4,m,asian,no,no,family member,Yes
+508,0,1,0,1,0,1,0,0,1,0,36,4,m,asian,no,no,family member,Yes
+509,0,0,0,0,1,0,0,0,0,1,35,2,m,asian,no,no,family member,No
+510,0,0,0,0,1,1,1,1,0,1,30,5,f,asian,no,no,family member,Yes
+511,0,0,0,0,1,1,1,1,1,1,35,6,m,asian,no,no,family member,Yes
+512,1,1,1,1,0,1,1,0,1,1,31,8,f,White European,no,no,family member,Yes
+513,1,0,0,0,0,0,0,0,0,1,12,2,f,south asian,no,no,family member,No
+514,1,0,0,0,1,1,1,0,0,0,36,4,m,asian,no,no,family member,Yes
+515,1,1,1,1,1,1,1,1,1,1,36,10,m,black,no,no,family member,Yes
+516,1,0,1,0,0,0,0,0,0,0,36,2,m,asian,no,yes,family member,No
+517,1,0,1,0,0,0,0,0,0,0,36,2,m,asian,no,yes,family member,No
+518,1,1,0,0,0,1,1,0,0,1,36,5,f,White European,no,no,family member,Yes
+519,1,1,1,1,1,1,1,1,1,1,26,10,f,Latino,no,no,family member,Yes
+520,1,1,1,0,1,1,1,1,0,1,22,8,m,asian,no,no,family member,Yes
+521,1,1,0,0,0,0,1,0,0,1,24,4,m,asian,yes,no,family member,Yes
+522,0,0,1,1,1,0,0,1,1,0,19,5,m,middle eastern,no,no,family member,Yes
+523,1,1,1,1,0,0,1,1,1,1,24,8,m,black,yes,no,family member,Yes
+524,1,0,1,1,1,1,1,0,1,1,21,8,m,White European,yes,yes,family member,Yes
+525,1,1,1,1,1,1,1,1,1,1,20,10,f,White European,no,no,family member,Yes
+526,0,0,0,1,1,1,0,1,1,0,30,5,m,middle eastern,no,no,family member,Yes
+527,0,0,0,0,1,1,1,0,1,1,13,5,f,asian,no,no,family member,Yes
+528,1,1,1,0,1,1,1,1,1,0,31,8,f,asian,no,no,family member,Yes
+529,1,1,1,0,1,1,1,1,0,0,31,7,f,asian,no,no,family member,Yes
+530,1,1,0,1,1,1,1,1,1,0,17,8,m,asian,no,no,family member,Yes
+531,0,0,0,0,0,0,0,0,0,1,12,1,f,middle eastern,no,no,family member,No
+532,1,1,1,1,1,0,1,1,1,1,12,9,f,middle eastern,no,no,family member,Yes
+533,0,0,0,0,0,1,0,1,0,1,13,3,f,middle eastern,yes,no,family member,No
+534,1,1,1,1,1,1,1,1,1,0,13,9,m,Hispanic,yes,no,family member,Yes
+535,1,1,1,1,1,1,1,1,1,0,13,9,m,Hispanic,yes,no,family member,Yes
+536,0,0,0,0,0,0,0,1,0,0,36,1,m,Hispanic,no,no,family member,No
+537,1,0,0,0,0,0,0,0,0,1,36,2,m,Hispanic,no,no,family member,No
+538,1,1,0,1,1,1,0,0,0,0,34,5,m,Others,no,no,family member,Yes
+539,1,1,0,1,1,1,1,0,0,1,34,7,m,Others,no,no,family member,Yes
+540,0,0,0,0,0,1,0,0,0,0,34,1,f,White European,no,yes,family member,No
+541,1,1,0,0,0,0,1,0,0,1,36,4,m,Hispanic,no,no,family member,Yes
+542,1,1,0,0,1,0,1,0,0,1,25,5,m,middle eastern,yes,no,family member,Yes
+543,1,1,0,0,0,0,1,0,0,1,25,4,m,middle eastern,no,no,family member,Yes
+544,1,1,1,1,1,1,1,1,1,1,24,10,f,black,no,no,family member,Yes
+545,1,1,0,1,0,1,1,1,0,1,36,7,m,White European,no,no,family member,Yes
+546,0,0,0,0,0,0,0,0,0,1,36,1,f,White European,no,no,family member,No
+547,0,0,0,1,1,1,1,1,1,1,35,7,m,asian,no,yes,family member,Yes
+548,0,0,0,0,1,1,1,0,1,1,35,5,m,asian,yes,no,family member,Yes
+549,1,1,1,1,1,1,1,1,1,1,19,10,m,White European,yes,no,family member,Yes
+550,0,1,1,1,0,0,1,0,1,0,12,5,f,middle eastern,yes,no,family member,Yes
+551,1,1,0,0,0,1,0,1,0,1,36,5,m,White European,no,yes,family member,Yes
+552,0,0,1,0,0,1,0,0,0,1,12,3,f,south asian,no,no,family member,No
+553,1,0,0,0,1,1,1,0,1,1,36,6,m,asian,no,no,family member,Yes
+554,1,1,0,1,1,1,1,1,0,1,36,8,m,White European,yes,yes,family member,Yes
+555,0,1,0,1,1,0,1,0,0,1,36,5,m,White European,yes,yes,family member,Yes
+556,1,0,1,1,1,1,0,1,1,1,33,8,m,White European,yes,no,family member,Yes
+557,1,1,0,1,0,0,1,0,1,1,22,6,m,White European,no,yes,family member,Yes
+558,1,1,0,1,0,1,1,1,1,1,22,8,m,White European,no,no,family member,Yes
+559,0,0,0,0,0,1,1,0,0,0,36,2,f,White European,no,no,family member,No
+560,1,1,1,1,1,1,1,1,1,1,31,10,m,White European,yes,yes,family member,Yes
+561,1,0,1,1,0,1,1,0,1,1,29,7,f,White European,no,no,family member,Yes
+562,1,0,0,0,0,0,1,0,1,1,36,4,m,asian,no,no,family member,Yes
+563,0,0,0,1,1,1,1,0,1,1,36,6,m,asian,no,no,family member,Yes
+564,0,0,0,0,0,0,0,1,0,0,36,1,f,black,no,no,family member,No
+565,1,0,0,0,0,0,0,1,0,0,36,2,f,black,no,no,family member,No
+566,1,1,1,1,1,1,1,1,1,1,36,10,m,White European,no,no,family member,Yes
+567,1,1,1,0,0,1,1,0,1,1,23,7,m,black,yes,no,family member,Yes
+568,1,1,0,0,1,0,0,1,0,1,36,5,m,White European,yes,no,family member,Yes
+569,1,1,1,1,1,1,1,1,1,1,28,10,f,White European,yes,no,family member,Yes
+570,1,1,0,1,0,1,1,1,1,1,35,8,f,asian,no,no,family member,Yes
+571,1,0,0,0,0,0,0,0,0,1,36,2,m,Hispanic,no,no,family member,No
+572,1,0,0,0,0,0,1,0,0,1,16,3,m,White European,no,no,family member,No
+573,0,1,0,0,0,0,0,1,0,0,36,2,m,White European,yes,no,family member,No
+574,0,0,1,1,0,1,0,1,0,0,32,4,f,White European,yes,no,family member,Yes
+575,0,1,1,1,1,0,1,1,0,1,36,7,f,White European,yes,yes,family member,Yes
+576,0,0,0,0,1,1,0,0,1,1,35,4,m,asian,yes,no,family member,Yes
+577,1,0,1,0,1,1,0,0,1,0,24,5,m,White European,no,no,family member,Yes
+578,1,0,1,1,1,1,0,0,1,0,24,6,m,White European,no,no,family member,Yes
+579,1,0,1,0,1,1,0,0,1,0,24,5,m,White European,no,no,family member,Yes
+580,1,1,1,1,0,1,1,0,1,1,30,8,f,White European,no,no,family member,Yes
+581,0,0,1,1,0,1,1,0,1,1,26,6,m,White European,no,no,family member,Yes
+582,1,1,1,1,1,1,1,1,1,1,12,10,m,Others,yes,yes,family member,Yes
+583,0,0,0,1,0,0,1,0,0,1,28,3,m,middle eastern,yes,no,family member,No
+584,0,0,0,0,0,0,0,0,0,1,31,1,m,Pacifica,no,no,family member,No
+585,0,0,1,1,1,1,1,1,1,1,36,8,m,White European,no,no,family member,Yes
+586,1,0,0,0,1,1,1,0,0,1,23,5,m,asian,yes,no,family member,Yes
+587,1,0,0,0,1,1,1,0,1,0,36,5,m,asian,yes,no,family member,Yes
+588,0,0,1,1,1,1,1,1,1,1,34,8,f,White European,no,yes,family member,Yes
+589,0,0,1,1,0,1,0,1,1,1,36,6,m,Hispanic,no,no,family member,Yes
+590,1,1,0,0,1,1,1,0,0,1,36,6,m,Others,no,no,family member,Yes
+591,1,0,0,1,1,1,1,0,1,1,36,7,m,White European,yes,no,family member,Yes
+592,1,1,0,0,0,1,0,0,1,1,36,5,m,asian,no,no,family member,Yes
+593,1,0,0,0,0,1,0,1,1,1,36,5,m,asian,no,no,family member,Yes
+594,0,0,0,0,0,0,1,0,0,1,36,2,f,Latino,no,no,family member,No
+595,0,1,1,1,1,1,1,1,1,0,36,8,m,black,no,no,family member,Yes
+596,0,0,0,0,0,0,0,1,0,0,36,1,f,black,no,no,family member,No
+597,0,0,0,0,0,1,0,0,0,1,36,2,m,White European,yes,yes,family member,No
+598,1,1,0,1,1,1,1,0,1,1,36,8,m,White European,no,no,family member,Yes
+599,1,1,1,1,1,1,1,0,1,1,36,9,m,Hispanic,no,no,family member,Yes
+600,1,0,1,0,1,1,1,0,0,1,26,6,m,asian,no,no,family member,Yes
+601,1,1,1,1,1,1,1,1,1,0,36,9,m,White European,no,yes,family member,Yes
+602,0,0,0,0,1,0,1,1,0,0,36,3,m,Hispanic,no,no,family member,No
+603,0,0,0,1,0,0,1,1,0,0,36,3,m,Hispanic,no,no,family member,No
+604,1,1,1,1,1,1,1,1,1,1,27,10,m,White European,yes,no,family member,Yes
+605,1,1,1,1,1,1,1,1,1,1,36,10,m,asian,no,no,family member,Yes
+606,1,1,1,1,1,1,1,1,1,1,36,10,m,asian,no,no,family member,Yes
+607,0,0,0,1,0,0,1,0,1,0,36,3,m,asian,no,no,family member,No
+608,0,1,0,1,0,0,0,0,1,1,36,4,m,black,yes,yes,family member,Yes
+609,0,1,0,1,0,0,0,0,1,1,36,4,m,black,yes,yes,family member,Yes
+610,1,1,1,1,1,1,1,1,1,1,36,10,m,black,no,yes,family member,Yes
+611,0,1,0,0,1,1,1,1,1,0,30,6,m,White European,no,no,family member,Yes
+612,0,1,0,0,0,0,1,1,0,1,26,4,m,mixed,no,no,family member,Yes
+613,1,1,0,1,1,1,1,1,0,1,25,8,f,Pacifica,yes,no,family member,Yes
+614,1,1,0,1,1,1,0,1,1,0,20,7,f,south asian,no,no,family member,Yes
+615,0,0,1,1,1,0,1,1,0,0,20,5,m,asian,yes,no,family member,Yes
+616,0,0,0,0,1,1,1,1,1,0,20,5,f,asian,no,no,Health care professional,Yes
+617,1,1,0,1,1,1,1,1,1,1,28,9,m,asian,no,no,family member,Yes
+618,1,0,0,1,1,1,1,1,1,1,28,8,m,asian,no,no,family member,Yes
+619,1,1,0,1,1,1,1,1,1,0,28,8,m,asian,no,no,family member,Yes
+620,1,1,0,1,1,1,1,1,1,1,28,9,m,asian,no,no,family member,Yes
+621,1,1,1,1,1,1,1,1,1,1,28,10,m,asian,no,no,family member,Yes
+622,1,1,1,1,0,1,1,0,1,1,36,8,m,White European,yes,no,family member,Yes
+623,1,1,1,1,1,1,1,1,1,0,29,9,f,Latino,no,no,family member,Yes
+624,1,1,1,1,1,1,1,1,1,1,30,10,m,Latino,no,no,Others,Yes
+625,1,1,0,0,1,1,1,0,1,1,27,7,m,White European,no,no,family member,Yes
+626,1,1,1,1,1,1,1,1,1,1,22,10,f,White European,no,no,family member,Yes
+627,1,0,0,0,0,0,1,0,0,1,22,3,f,White European,yes,no,family member,No
+628,1,0,0,0,0,1,1,0,0,1,22,4,m,Hispanic,yes,no,family member,Yes
+629,0,0,0,0,0,0,1,1,0,1,36,3,f,asian,no,no,family member,No
+630,0,0,0,1,0,0,1,1,0,1,36,4,f,asian,no,no,family member,Yes
+631,1,1,1,1,1,1,1,1,1,1,36,10,m,asian,no,no,family member,Yes
+632,0,0,0,1,1,1,1,0,0,0,36,4,m,asian,no,no,family member,Yes
+633,0,0,0,0,1,1,1,0,1,1,34,5,m,Others,yes,no,family member,Yes
+634,1,0,0,1,1,0,0,0,0,1,24,4,m,asian,yes,no,family member,Yes
+635,1,1,1,1,0,1,1,0,0,1,25,7,m,White European,yes,yes,family member,Yes
+636,1,0,1,0,1,1,1,0,1,0,25,6,m,White European,no,yes,family member,Yes
+637,1,0,0,0,0,0,0,0,0,1,30,2,f,middle eastern,no,no,family member,No
+638,0,0,0,0,0,1,0,1,0,0,36,2,f,asian,no,no,family member,No
+639,0,0,0,0,1,0,0,1,0,1,32,3,m,black,yes,no,family member,No
+640,0,0,1,1,0,1,1,1,1,0,33,6,m,White European,yes,no,family member,Yes
+641,0,0,0,0,1,0,0,1,1,1,36,4,m,middle eastern,no,no,family member,Yes
+642,0,0,0,0,0,0,0,0,0,1,12,1,m,middle eastern,no,no,family member,No
+643,1,0,1,1,0,1,1,0,1,0,24,6,f,asian,no,no,family member,Yes
+644,0,0,0,1,0,1,1,0,0,0,25,3,f,asian,no,no,family member,No
+645,0,0,1,1,1,1,0,0,1,0,24,5,f,asian,no,no,family member,Yes
+646,0,0,1,1,1,1,0,0,1,0,24,5,f,asian,no,no,family member,Yes
+647,0,1,0,0,1,1,1,1,0,1,29,6,m,White European,yes,no,family member,Yes
+648,1,1,1,1,1,1,1,1,1,1,28,10,m,south asian,no,no,family member,Yes
+649,0,0,1,1,0,0,0,0,0,1,24,3,m,asian,no,no,family member,No
+650,0,0,1,1,0,0,0,1,0,1,24,4,m,asian,no,no,family member,Yes
+651,0,0,1,1,0,1,0,0,0,1,24,4,m,asian,no,no,family member,Yes
+652,1,0,1,1,1,0,1,0,1,0,16,6,f,asian,no,no,family member,Yes
+653,0,0,0,0,0,0,0,0,0,1,12,1,m,White European,yes,yes,family member,No
+654,1,0,1,1,1,1,1,0,0,0,22,6,f,White European,no,yes,family member,Yes
+655,0,0,1,1,1,1,1,0,0,1,22,6,f,White European,no,yes,family member,Yes
+656,1,0,0,0,1,1,1,1,0,1,32,6,f,asian,no,no,family member,Yes
+657,1,1,1,1,1,1,1,0,1,0,18,8,m,middle eastern,yes,no,family member,Yes
+658,1,1,1,1,1,1,1,1,1,1,28,10,m,White European,no,no,family member,Yes
+659,0,0,1,1,0,1,1,1,1,1,34,7,m,White European,yes,no,family member,Yes
+660,0,0,1,1,1,1,1,0,1,1,24,7,f,asian,no,no,family member,Yes
+661,1,1,1,1,1,1,1,0,1,1,22,9,m,asian,no,no,family member,Yes
+662,0,0,0,0,0,0,0,0,0,1,36,1,m,asian,no,no,family member,No
+663,1,0,0,1,1,1,1,0,0,0,36,5,f,White European,no,no,family member,Yes
+664,1,0,0,0,1,0,1,1,1,0,14,5,m,asian,yes,no,family member,Yes
+665,0,0,0,0,0,1,0,0,0,1,30,2,m,asian,no,no,family member,No
+666,1,1,0,0,1,1,1,1,1,1,36,8,f,Others,no,no,family member,Yes
+667,0,0,0,0,0,0,0,0,0,0,36,0,f,Others,yes,no,family member,No
+668,1,1,1,1,1,0,1,1,0,0,24,7,m,Others,no,no,family member,Yes
+669,1,1,1,1,1,1,1,0,1,0,14,8,m,White European,no,no,family member,Yes
+670,1,1,0,1,1,1,1,0,1,0,14,7,m,White European,no,no,family member,Yes
+671,1,1,0,0,0,0,1,0,0,1,26,4,f,middle eastern,no,no,family member,Yes
+672,1,0,0,1,1,0,1,0,1,0,36,5,m,south asian,no,no,family member,Yes
+673,1,1,1,1,1,1,1,0,0,0,24,7,m,Others,no,no,family member,Yes
+674,1,0,1,1,1,1,1,1,1,1,33,9,f,asian,no,no,family member,Yes
+675,1,0,1,0,1,1,1,1,1,1,33,8,f,asian,no,no,family member,Yes
+676,0,0,0,0,0,0,0,1,0,0,24,1,m,asian,yes,no,family member,No
+677,1,1,0,1,0,1,1,1,0,1,32,7,f,White European,no,no,family member,Yes
+678,0,0,0,0,0,0,0,0,0,0,13,0,f,White European,no,yes,family member,No
+679,0,0,1,1,1,1,1,0,1,0,31,6,f,White European,no,no,family member,Yes
+680,1,0,1,1,0,1,0,1,0,0,17,5,m,asian,yes,no,family member,Yes
+681,1,1,1,1,1,0,1,1,1,1,19,9,f,White European,yes,no,family member,Yes
+682,1,1,1,1,1,1,1,1,1,0,19,9,f,White European,yes,no,family member,Yes
+683,0,1,0,0,1,1,0,1,0,1,29,5,m,White European,no,no,family member,Yes
+684,1,0,0,0,1,1,1,1,1,1,36,7,m,White European,no,no,Health Care Professional,Yes
+685,1,1,0,1,1,1,1,1,1,1,14,9,m,White European,yes,no,family member,Yes
+686,1,0,1,1,1,0,1,1,1,1,16,8,m,black,no,no,family member,Yes
+687,1,1,1,1,1,1,1,1,1,1,14,10,m,White European,no,no,family member,Yes
+688,0,0,0,0,0,0,1,0,0,0,30,1,m,White European,no,no,family member,No
+689,1,0,1,0,1,0,1,1,0,1,24,6,m,White European,no,no,family member,Yes
+690,1,1,1,1,1,1,1,1,1,0,36,9,m,asian,yes,yes,family member,Yes
+691,1,1,0,0,1,1,1,0,1,0,32,6,m,White European,no,no,family member,Yes
+692,0,0,0,0,0,1,1,0,0,0,21,2,f,White European,no,no,family member,No
+693,0,0,0,0,0,0,1,0,1,1,36,3,m,south asian,no,no,family member,No
+694,1,1,1,1,1,1,1,1,0,1,27,9,m,Others,yes,yes,family member,Yes
+695,0,0,1,1,1,1,1,1,1,1,33,8,m,White European,no,no,family member,Yes
+696,0,1,0,0,0,0,0,0,0,1,36,2,m,White European,no,no,family member,No
+697,0,1,0,0,1,0,0,0,0,1,29,3,m,White European,no,no,family member,No
+698,1,0,0,1,0,1,1,1,0,1,23,6,m,White European,yes,no,family member,Yes
+699,1,0,1,1,1,1,1,0,0,1,34,7,m,White European,yes,no,family member,Yes
+700,1,1,0,0,0,1,1,1,1,1,16,7,f,White European,yes,no,family member,Yes
+701,0,0,1,0,0,0,0,0,0,0,36,1,f,White European,no,yes,family member,No
+702,0,0,0,0,0,0,0,0,1,1,26,2,f,White European,yes,no,family member,No
+703,0,1,1,0,0,0,0,0,0,1,35,3,f,black,yes,no,family member,No
+704,1,0,1,1,1,1,1,0,1,0,36,7,m,White European,yes,yes,family member,Yes
+705,0,0,0,0,0,0,0,0,0,0,12,0,m,asian,no,no,family member,No
+706,0,0,0,0,0,1,0,1,0,0,36,2,f,middle eastern,no,no,family member,No
+707,1,0,0,1,0,0,1,0,1,1,24,5,m,White European,yes,yes,family member,Yes
+708,1,1,0,1,0,1,1,1,1,0,35,7,m,middle eastern,no,no,family member,Yes
+709,1,0,1,1,1,0,1,1,1,1,15,8,m,White European,yes,no,family member,Yes
+710,0,0,1,1,1,0,1,1,1,0,15,6,m,White European,yes,no,family member,Yes
+711,1,0,0,1,0,0,1,0,0,0,27,3,m,south asian,no,no,family member,No
+712,1,1,1,1,1,0,1,0,1,1,12,8,f,White European,no,no,family member,Yes
+713,1,1,1,1,1,1,1,1,1,1,22,10,m,White European,yes,no,family member,Yes
+714,1,0,0,0,0,1,1,0,1,0,36,4,m,Others,no,yes,family member,Yes
+715,0,0,0,0,0,1,0,0,0,0,36,1,m,White European,yes,no,family member,No
+716,0,0,0,0,0,0,0,0,0,1,15,1,m,asian,no,no,family member,No
+717,0,1,0,1,0,1,1,0,0,0,30,4,m,asian,yes,no,family member,Yes
+718,1,1,0,1,1,1,1,0,1,1,36,8,m,White European,no,no,family member,Yes
+719,1,1,0,0,0,0,0,0,0,0,17,2,m,asian,no,no,family member,No
+720,1,1,0,1,0,0,0,0,0,0,17,3,m,middle eastern,no,no,family member,No
+721,1,1,0,0,0,0,0,0,0,0,17,2,m,middle eastern,no,no,family member,No
+722,1,1,0,0,1,1,0,1,1,1,29,7,m,White European,no,no,family member,Yes
+723,1,1,1,1,1,1,1,1,1,1,26,10,m,Pacifica,no,no,family member,Yes
+724,1,1,0,0,0,1,1,1,0,1,23,6,m,White European,yes,yes,family member,Yes
+725,0,0,0,0,0,0,1,0,0,1,23,2,m,White European,yes,yes,family member,No
+726,0,0,0,0,0,0,0,1,0,1,23,2,m,White European,yes,no,family member,No
+727,0,0,0,0,0,0,0,1,0,1,36,2,f,White European,no,no,family member,No
+728,1,1,1,1,1,1,1,1,1,1,15,10,m,south asian,no,no,family member,Yes
+729,1,1,0,1,1,1,1,1,1,0,25,8,m,White European,no,no,family member,Yes
+730,0,0,0,1,1,1,1,1,1,1,33,7,f,asian,no,no,family member,Yes
+731,0,0,0,0,1,0,0,0,1,1,12,3,f,White European,no,no,family member,No
+732,0,0,1,1,1,1,1,0,1,1,12,7,f,middle eastern,no,no,family member,Yes
+733,1,1,0,1,0,1,1,0,0,1,28,6,m,White European,no,no,family member,Yes
+734,1,1,0,1,1,0,1,1,1,0,36,7,m,middle eastern,no,no,family member,Yes
+735,0,0,0,0,0,1,0,0,0,1,31,2,m,asian,no,yes,family member,No
+736,1,1,1,1,1,1,0,1,1,1,30,9,m,asian,no,no,family member,Yes
+737,1,0,0,0,1,1,0,0,1,1,30,5,m,asian,no,no,family member,Yes
+738,1,0,0,0,0,0,0,0,0,1,36,2,m,Hispanic,no,no,family member,No
+739,1,1,1,1,1,1,1,1,1,0,36,9,f,middle eastern,yes,no,family member,Yes
+740,0,0,0,0,0,0,0,0,1,1,30,2,m,asian,no,no,family member,No
+741,1,1,1,0,1,1,1,0,0,1,29,7,m,Pacifica,no,yes,family member,Yes
+742,0,0,0,0,0,0,0,0,0,1,22,1,f,middle eastern,no,no,family member,No
+743,0,0,1,0,1,1,1,1,0,1,34,6,f,asian,no,no,family member,Yes
+744,0,1,1,1,1,1,1,1,0,1,36,8,f,White European,no,no,Self,Yes
+745,1,1,1,1,1,1,1,0,1,1,31,9,m,White European,no,no,family member,Yes
+746,1,1,1,1,0,1,1,0,0,1,36,7,f,White European,no,no,family member,Yes
+747,0,0,0,0,0,0,0,0,0,1,22,1,m,middle eastern,no,no,Health Care Professional,No
+748,1,0,1,1,1,1,1,0,1,1,36,8,m,middle eastern,no,no,family member,Yes
+749,1,1,0,1,1,1,1,1,1,1,12,9,m,Latino,yes,no,family member,Yes
+750,1,0,0,0,1,1,1,0,1,0,26,5,m,asian,no,no,family member,Yes
+751,0,0,0,0,1,1,1,0,1,0,36,4,f,Latino,no,no,family member,Yes
+752,1,0,1,1,1,1,1,1,1,0,36,8,m,asian,yes,no,family member,Yes
+753,1,1,0,0,1,1,1,1,1,0,28,7,m,south asian,no,no,family member,Yes
+754,0,0,0,0,0,0,0,0,0,0,36,0,f,middle eastern,yes,no,family member,No
+755,1,1,1,1,1,1,0,1,0,1,36,8,f,White European,no,no,family member,Yes
+756,1,1,1,1,1,1,1,1,1,0,12,9,m,White European,no,yes,Health Care Professional,Yes
+757,1,0,0,0,0,0,1,1,0,0,36,3,m,White European,no,no,family member,No
+758,0,0,1,1,1,1,1,0,0,0,31,5,m,White European,no,no,family member,Yes
+759,0,0,1,1,1,1,1,0,0,0,31,5,m,White European,yes,no,family member,Yes
+760,1,1,1,1,1,0,1,1,0,1,22,8,m,south asian,no,no,family member,Yes
+761,0,0,0,1,0,0,1,0,0,1,36,3,m,south asian,no,no,family member,No
+762,1,1,0,0,1,0,1,1,1,1,36,7,m,White European,no,no,family member,Yes
+763,1,1,1,1,1,1,1,1,1,1,15,10,f,middle eastern,no,yes,family member,Yes
+764,0,0,1,0,1,1,1,1,0,1,34,6,f,asian,no,no,family member,Yes
+765,0,0,1,1,1,1,1,1,1,0,14,7,m,White European,yes,no,family member,Yes
+766,1,0,1,0,0,0,1,1,1,0,27,5,m,asian,no,no,family member,Yes
+767,1,1,0,1,1,1,1,1,1,1,28,9,m,White European,no,no,family member,Yes
+768,0,0,1,1,1,1,1,1,1,0,14,7,m,White European,yes,no,family member,Yes
+769,0,0,0,0,0,0,1,0,0,0,15,1,f,asian,no,yes,family member,No
+770,0,0,1,1,1,0,1,0,0,0,31,4,m,White European,yes,no,family member,Yes
+771,0,0,0,0,0,0,0,0,0,0,17,0,f,asian,no,yes,family member,No
+772,1,1,1,1,1,1,1,1,1,0,28,9,m,Others,no,no,family member,Yes
+773,1,1,0,1,1,1,1,1,1,0,36,8,f,asian,no,no,family member,Yes
+774,1,0,0,0,0,1,1,0,0,1,26,4,f,Others,no,no,family member,Yes
+775,1,0,1,1,1,1,1,0,1,0,15,7,m,White European,no,no,family member,Yes
+776,0,1,1,1,0,1,1,1,1,0,12,7,m,Hispanic,no,no,family member,Yes
+777,0,1,0,0,0,0,1,1,0,1,16,4,m,White European,yes,no,family member,Yes
+778,1,0,1,1,1,1,1,1,1,1,28,9,m,White European,no,no,family member,Yes
+779,0,0,1,0,1,1,1,1,0,1,34,6,f,asian,no,no,family member,Yes
+780,1,1,1,1,1,1,1,1,1,0,24,9,m,asian,no,no,family member,Yes
+781,1,1,1,1,0,1,1,0,0,1,22,7,m,middle eastern,yes,yes,family member,Yes
+782,0,0,1,1,0,0,1,0,0,1,36,4,f,asian,yes,no,family member,Yes
+783,1,1,1,1,1,1,1,1,1,1,29,10,m,White European,no,no,family member,Yes
+784,0,0,0,0,0,0,1,1,0,1,36,3,m,White European,no,no,family member,No
+785,0,0,0,0,0,0,1,0,0,1,22,2,m,White European,yes,yes,family member,No
+786,0,0,1,1,1,1,1,1,1,0,14,7,m,White European,yes,no,family member,Yes
+787,1,0,0,0,0,0,0,0,0,0,34,1,m,White European,yes,yes,family member,No
+788,0,0,0,1,1,0,1,1,1,0,36,5,m,asian,no,no,family member,Yes
+789,1,1,1,0,1,0,1,0,0,0,35,5,m,Others,no,no,family member,Yes
+790,1,0,0,0,0,0,1,1,0,1,35,4,f,White European,yes,no,family member,Yes
+791,1,0,0,0,0,1,1,0,0,1,31,4,f,White European,no,yes,family member,Yes
+792,1,1,0,1,1,1,1,0,1,1,36,8,m,asian,yes,no,family member,Yes
+793,1,0,0,0,0,1,1,0,0,0,36,3,m,asian,no,no,family member,No
+794,1,1,1,1,1,1,1,0,1,1,15,9,m,mixed,no,no,family member,Yes
+795,1,1,1,1,0,1,1,0,1,1,36,8,f,White European,no,no,family member,Yes
+796,0,0,1,0,0,1,1,1,1,1,36,6,f,middle eastern,no,yes,family member,Yes
+797,1,1,1,1,1,1,1,1,1,1,36,10,f,middle eastern,yes,no,family member,Yes
+798,1,0,0,0,0,0,1,0,0,1,27,3,m,White European,no,no,family member,No
+799,0,0,0,0,1,0,1,0,1,1,36,4,m,Others,yes,no,family member,Yes
+800,1,1,0,1,1,1,1,1,1,1,24,9,f,south asian,no,no,family member,Yes
+801,1,1,0,1,1,1,1,0,0,0,24,6,f,south asian,no,no,family member,Yes
+802,1,0,0,1,0,1,1,0,0,1,23,5,f,asian,no,no,family member,Yes
+803,1,0,0,0,1,1,1,1,1,0,34,6,f,asian,no,no,family member,Yes
+804,1,0,1,1,1,1,1,1,1,1,13,9,m,black,yes,yes,family member,Yes
+805,0,0,0,0,0,0,0,0,0,0,36,0,f,black,no,yes,family member,No
+806,1,1,0,0,1,1,1,0,1,1,36,7,m,White European,no,no,family member,Yes
+807,1,1,0,0,1,1,1,0,1,1,36,7,m,White European,no,yes,family member,Yes
+808,1,1,0,0,1,1,1,0,1,1,36,7,m,White European,no,yes,family member,Yes
+809,1,1,1,1,1,1,1,0,1,1,16,9,m,middle eastern,no,no,family member,Yes
+810,1,1,1,1,0,1,1,0,1,1,24,8,f,White European,no,no,family member,Yes
+811,0,0,0,0,0,0,1,0,0,1,36,2,m,White European,no,yes,family member,No
+812,1,1,1,1,0,1,0,0,0,1,20,6,m,White European,yes,yes,family member,Yes
+813,1,0,1,1,1,1,1,1,0,1,28,8,m,middle eastern,no,no,family member,Yes
+814,1,1,1,1,1,1,1,1,1,0,29,9,m,asian,no,no,family member,Yes
+815,0,0,0,0,0,0,0,0,0,0,25,0,m,asian,no,no,family member,No
+816,0,0,0,0,0,0,1,0,1,0,24,2,f,middle eastern,no,no,family member,No
+817,1,0,0,0,1,0,1,1,1,0,24,5,m,White European,no,no,family member,Yes
+818,1,1,0,0,0,1,0,0,0,0,36,3,m,middle eastern,no,no,family member,No
+819,1,1,1,1,1,1,1,1,1,0,19,9,m,middle eastern,no,no,Health Care Professional,Yes
+820,1,0,0,0,1,1,1,1,1,1,34,7,f,asian,no,no,family member,Yes
+821,0,0,0,1,0,1,1,1,1,0,18,5,m,asian,no,yes,family member,Yes
+822,0,0,1,1,0,0,0,0,1,0,36,3,m,White European,no,no,family member,No
+823,0,0,0,0,0,1,1,0,1,0,24,3,f,middle eastern,no,no,family member,No
+824,1,1,0,0,0,0,1,0,1,1,36,5,f,White European,no,yes,family member,Yes
+825,0,0,0,0,0,0,0,1,0,0,30,1,f,middle eastern,no,no,family member,No
+826,0,0,0,0,0,0,0,0,0,1,36,1,m,White European,no,no,family member,No
+827,1,0,0,0,0,0,1,0,0,0,25,2,f,asian,no,no,family member,No
+828,0,0,0,0,0,0,1,0,0,1,14,2,m,middle eastern,no,no,family member,No
+829,1,1,1,1,1,1,1,1,1,1,14,10,m,middle eastern,no,no,family member,Yes
+830,0,0,1,1,1,0,1,1,1,0,14,6,m,White European,yes,no,family member,Yes
+831,0,0,1,1,1,0,0,1,0,0,35,4,m,asian,no,no,family member,Yes
+832,1,1,1,1,1,1,1,1,1,1,35,10,m,asian,no,no,family member,Yes
+833,1,1,1,1,1,1,1,1,1,0,19,9,f,Hispanic,no,no,family member,Yes
+834,0,0,0,1,0,0,0,0,0,0,31,1,f,middle eastern,yes,no,family member,No
+835,0,0,0,1,0,0,0,0,0,0,31,1,f,middle eastern,yes,no,family member,No
+836,0,0,0,1,0,0,0,0,0,0,31,1,f,middle eastern,yes,no,family member,No
+837,1,1,1,1,1,1,1,1,1,1,29,10,m,White European,no,no,family member,Yes
+838,1,0,0,0,1,1,1,1,1,0,36,6,m,White European,no,no,family member,Yes
+839,0,0,0,0,0,0,0,0,0,0,28,0,m,middle eastern,no,no,family member,No
+840,1,0,1,1,0,1,1,0,0,0,26,5,m,White European,no,no,family member,Yes
+841,1,1,0,0,0,0,1,1,0,0,28,4,m,middle eastern,no,no,family member,Yes
+842,0,1,0,0,1,0,0,0,0,0,32,2,m,middle eastern,no,no,family member,No
+843,1,1,1,1,1,1,1,1,1,1,36,10,m,Latino,no,no,family member,Yes
+844,0,1,0,0,1,1,0,0,1,0,36,4,m,White European,no,no,family member,Yes
+845,0,0,1,1,1,1,1,1,1,1,18,8,m,Hispanic,no,no,family member,Yes
+846,0,0,0,0,0,0,1,0,0,1,21,2,m,middle eastern,yes,no,family member,No
+847,0,0,0,0,0,0,1,0,0,1,21,2,m,middle eastern,yes,no,family member,No
+848,1,0,0,0,0,1,1,0,0,1,21,4,m,middle eastern,yes,no,family member,Yes
+849,1,1,1,1,1,1,1,0,1,1,32,9,m,Hispanic,no,no,family member,Yes
+850,0,0,0,0,0,1,1,1,1,0,36,4,m,asian,no,no,family member,Yes
+851,0,0,0,0,0,0,0,0,0,0,20,0,m,asian,yes,no,family member,No
+852,1,1,1,0,1,0,1,0,1,1,27,7,m,asian,yes,no,family member,Yes
+853,1,1,0,1,1,0,1,1,1,0,18,7,m,black,yes,yes,family member,Yes
+854,0,0,0,1,1,1,0,1,0,0,24,4,m,asian,no,no,family member,Yes
+855,0,1,0,0,0,1,0,0,0,0,36,2,f,White European,yes,no,family member,No
+856,0,0,0,0,0,0,0,0,0,0,36,0,f,White European,yes,no,family member,No
+857,1,1,0,0,1,1,1,0,0,0,36,5,m,asian,no,no,family member,Yes
+858,0,0,1,1,1,1,1,0,1,0,22,6,f,Others,no,no,family member,Yes
+859,1,1,1,1,1,1,1,1,1,1,30,10,m,White European,yes,yes,family member,Yes
+860,1,1,1,1,1,1,1,1,1,1,19,10,m,White European,yes,no,family member,Yes
+861,1,1,1,1,1,1,1,1,1,1,16,10,m,White European,no,no,family member,Yes
+862,1,1,0,1,1,1,1,1,1,1,26,9,f,middle eastern,no,no,family member,Yes
+863,1,1,1,1,1,1,0,1,1,1,24,9,f,Hispanic,no,no,family member,Yes
+864,0,0,1,0,1,1,1,0,1,1,30,6,f,Others,yes,no,family member,Yes
+865,1,0,0,0,1,0,0,0,0,1,12,3,m,middle eastern,yes,no,family member,No
+866,1,1,0,1,1,1,1,0,1,0,26,7,f,White European,no,no,family member,Yes
+867,1,1,1,1,1,1,1,1,1,1,30,10,m,White European,yes,yes,family member,Yes
+868,0,0,0,0,0,0,0,0,0,1,36,1,m,White European,no,no,family member,No
+869,1,1,1,1,0,0,1,1,0,1,36,7,f,mixed,yes,no,family member,Yes
+870,0,1,0,1,0,1,1,1,1,1,36,7,f,mixed,yes,no,family member,Yes
+871,0,0,0,0,0,0,1,0,0,0,30,1,f,Latino,no,no,family member,No
+872,1,1,1,1,1,1,1,1,1,1,21,10,m,White European,yes,no,family member,Yes
+873,1,1,0,0,0,1,1,1,1,1,36,7,m,White European,no,no,family member,Yes
+874,0,0,0,0,0,0,0,0,0,0,36,0,m,Others,no,no,family member,No
+875,0,0,1,1,0,0,0,1,1,0,31,4,m,south asian,no,no,family member,Yes
+876,0,0,1,1,1,1,1,0,1,1,30,7,f,Others,yes,no,family member,Yes
+877,1,1,1,1,1,1,1,1,1,1,30,10,f,Others,no,no,family member,Yes
+878,0,0,0,1,1,1,0,0,1,1,33,5,m,White European,no,no,family member,Yes
+879,1,1,0,0,1,1,1,1,1,0,26,7,m,White European,no,yes,family member,Yes
+880,1,0,0,0,0,0,0,0,0,1,12,2,f,middle eastern,no,no,family member,No
+881,1,1,0,0,0,1,1,0,0,1,36,5,m,White European,yes,no,family member,Yes
+882,1,1,0,0,0,0,1,0,0,0,36,3,m,Hispanic,no,no,family member,No
+883,1,1,1,1,1,0,1,0,1,0,36,7,m,asian,no,no,family member,Yes
+884,0,0,0,1,1,1,1,1,0,0,24,5,f,White European,no,no,family member,Yes
+885,0,0,0,0,0,0,0,0,0,0,36,0,m,Others,no,no,family member,No
+886,1,1,1,1,1,1,1,1,1,1,24,10,m,south asian,no,no,family member,Yes
+887,0,0,1,1,1,0,0,1,0,1,36,5,m,Others,no,no,family member,Yes
+888,0,1,1,0,1,0,1,0,1,0,34,5,f,black,no,no,family member,Yes
+889,0,1,1,0,1,0,0,0,0,0,34,3,f,black,yes,no,family member,No
+890,0,1,1,0,1,0,0,0,0,0,34,3,f,black,no,no,family member,No
+891,1,1,1,1,1,1,1,1,1,1,24,10,m,White European,no,no,Health Care Professional,Yes
+892,0,0,0,0,0,0,0,0,0,0,24,0,m,black,no,no,family member,No
+893,0,0,0,1,1,1,0,1,0,1,29,5,m,asian,no,no,family member,Yes
+894,1,1,1,1,1,1,1,1,1,1,20,10,m,middle eastern,no,yes,family member,Yes
+895,0,0,0,0,1,1,1,1,0,1,30,5,m,Latino,yes,no,family member,Yes
+896,0,0,0,0,0,0,0,0,0,0,26,0,f,south asian,no,no,family member,No
+897,0,1,1,1,0,1,1,1,1,1,36,8,m,middle eastern,no,no,family member,Yes
+898,1,1,1,1,1,1,1,1,1,1,30,10,m,White European,yes,no,family member,Yes
+899,1,1,1,1,0,1,1,1,1,1,27,9,f,White European,no,no,family member,Yes
+900,1,0,1,1,1,1,1,1,1,1,23,9,m,Latino,no,no,family member,Yes
+901,1,0,1,1,0,1,1,1,1,1,23,8,m,Latino,no,no,Health Care Professional,Yes
+902,0,0,1,1,1,0,1,0,1,0,36,5,f,south asian,no,no,family member,Yes
+903,1,1,1,1,0,1,1,0,1,1,22,8,f,Pacifica,yes,no,family member,Yes
+904,1,1,0,1,0,1,1,0,1,1,36,7,f,White European,no,no,family member,Yes
+905,1,1,0,0,1,0,1,1,1,0,36,6,m,Hispanic,no,no,family member,Yes
+906,0,0,0,1,0,1,1,1,1,1,26,6,m,black,no,no,family member,Yes
+907,0,0,0,0,0,0,0,0,0,0,28,0,f,black,no,no,family member,No
+908,1,1,1,1,1,1,1,1,1,1,21,10,m,asian,no,no,family member,Yes
+909,1,1,0,0,0,0,1,0,1,1,25,5,m,White European,yes,no,family member,Yes
+910,1,1,1,1,1,1,1,1,1,1,28,10,f,White European,yes,no,family member,Yes
+911,1,1,1,0,0,0,1,0,1,0,13,5,f,Latino,no,no,family member,Yes
+912,0,0,1,1,1,1,1,1,1,0,15,7,m,White European,yes,no,family member,Yes
+913,1,1,0,0,0,1,1,0,0,1,23,5,m,White European,no,no,family member,Yes
+914,0,0,0,0,0,0,0,0,1,0,24,1,m,asian,no,no,family member,No
+915,0,0,1,1,0,0,0,0,1,1,24,4,m,asian,no,no,family member,Yes
+916,1,0,1,1,1,1,1,0,1,1,36,8,m,Hispanic,no,yes,family member,Yes
+917,0,0,0,0,0,0,1,0,0,1,12,2,m,asian,yes,no,family member,No
+918,1,0,1,1,1,1,1,1,1,0,29,8,m,White European,yes,no,family member,Yes
+919,0,1,1,1,1,1,1,1,1,0,36,8,m,middle eastern,yes,yes,family member,Yes
+920,0,0,0,0,1,0,1,0,0,1,36,3,m,south asian,no,no,family member,No
+921,0,0,0,0,0,0,0,1,0,1,27,2,m,asian,no,yes,family member,No
+922,1,1,1,1,0,0,1,1,0,1,32,7,m,asian,no,no,family member,Yes
+923,0,0,0,0,0,1,1,1,0,0,12,3,m,Latino,no,no,family member,No
+924,1,0,0,1,0,1,1,1,1,0,36,6,m,White European,yes,no,family member,Yes
+925,1,0,0,1,0,1,1,0,1,0,36,5,m,Others,yes,no,family member,Yes
+926,1,1,0,0,1,1,1,0,1,1,36,7,m,asian,no,no,family member,Yes
+927,1,0,1,1,0,0,0,0,1,0,12,4,m,White European,no,no,family member,Yes
+928,0,0,1,1,1,0,0,0,0,0,12,3,m,White European,no,no,family member,No
+929,1,0,0,1,0,0,0,0,1,0,12,3,m,White European,no,no,family member,No
+930,0,0,1,1,1,0,0,0,1,0,12,4,m,White European,no,no,family member,Yes
+931,0,0,1,1,1,0,0,0,0,0,12,3,m,White European,no,no,family member,No
+932,0,0,0,0,0,1,1,0,0,1,20,3,m,south asian,no,no,family member,No
+933,0,0,0,0,0,1,1,0,0,1,36,3,f,asian,no,no,family member,No
+934,0,0,0,0,0,1,1,0,0,1,36,3,f,asian,no,no,family member,No
+935,0,0,0,1,0,0,0,1,0,0,36,2,m,White European,yes,no,family member,No
+936,1,1,0,1,1,1,1,0,1,1,32,8,m,asian,no,no,family member,Yes
+937,0,0,0,0,1,1,0,1,0,1,35,4,f,asian,no,no,family member,Yes
+938,0,0,1,0,0,0,0,0,0,1,19,2,m,middle eastern,no,no,family member,No
+939,1,0,1,0,0,0,1,0,0,1,20,4,m,middle eastern,no,no,family member,Yes
+940,1,0,1,0,0,0,0,0,0,1,20,3,m,middle eastern,no,no,family member,No
+941,1,0,0,0,0,0,0,0,0,0,12,1,m,White European,no,no,family member,No
+942,1,0,0,0,0,0,0,0,0,1,12,2,m,White European,no,no,family member,No
+943,0,0,0,0,0,0,0,0,0,0,12,0,m,White European,no,no,family member,No
+944,1,1,1,1,1,1,1,1,1,0,12,9,m,White European,no,no,family member,Yes
+945,1,1,0,0,0,1,0,0,0,1,36,4,m,asian,no,no,Health Care Professional,Yes
+946,0,0,1,1,1,1,1,1,1,0,15,7,m,White European,yes,no,family member,Yes
+947,1,1,0,0,1,0,1,1,1,1,36,7,m,White European,no,no,family member,Yes
+948,0,0,0,0,1,1,0,0,1,1,36,4,m,Native Indian,no,no,family member,Yes
+949,0,0,0,0,0,0,1,0,0,1,24,2,m,middle eastern,no,no,family member,No
+950,0,0,0,0,1,0,1,0,0,1,36,3,f,White European,no,no,family member,No
+951,1,1,1,1,1,1,1,1,0,1,27,9,m,black,no,yes,family member,Yes
+952,1,1,1,1,1,1,1,1,0,1,27,9,m,black,no,yes,family member,Yes
+953,1,1,0,0,1,0,0,1,1,0,36,5,m,south asian,no,no,family member,Yes
+954,1,0,0,0,1,1,0,1,0,1,35,5,f,asian,no,no,family member,Yes
+955,1,0,0,0,1,0,0,0,0,0,18,2,m,black,no,no,family member,No
+956,1,1,1,1,1,1,1,1,1,0,36,9,f,White European,no,no,family member,Yes
+957,1,1,1,1,0,0,0,1,0,0,22,5,f,Hispanic,no,no,family member,Yes
+958,1,1,0,1,1,1,1,1,1,1,29,9,m,south asian,yes,no,family member,Yes
+959,0,1,0,0,0,0,1,0,0,0,36,2,m,asian,no,no,family member,No
+960,0,1,0,0,1,1,1,0,0,0,36,4,m,asian,no,no,family member,Yes
+961,1,1,0,1,1,1,1,0,0,0,27,6,m,White European,no,yes,family member,Yes
+962,0,0,1,1,1,0,1,1,1,0,26,6,f,White European,no,no,family member,Yes
+963,1,1,0,1,0,1,1,1,1,1,26,8,m,middle eastern,yes,no,family member,Yes
+964,0,0,0,0,1,0,0,0,0,1,36,2,m,south asian,yes,no,family member,No
+965,1,0,1,1,1,1,1,0,1,0,16,7,m,White European,no,yes,family member,Yes
+966,1,0,1,1,0,1,1,1,0,0,28,6,m,asian,no,no,family member,Yes
+967,1,0,1,1,1,1,0,1,1,0,18,7,m,White European,no,no,family member,Yes
+968,1,0,0,0,0,0,1,0,1,0,36,3,m,south asian,no,no,family member,No
+969,0,0,0,0,1,1,0,1,0,1,35,4,f,asian,no,no,family member,Yes
+970,1,0,0,0,0,0,1,0,0,1,30,3,m,middle eastern,no,no,family member,No
+971,1,0,0,0,0,0,1,1,0,1,30,4,m,middle eastern,no,no,family member,Yes
+972,1,1,0,0,0,1,0,1,0,1,33,5,m,middle eastern,no,no,family member,Yes
+973,0,0,0,1,0,0,0,0,0,0,24,1,m,White European,no,no,family member,No
+974,1,1,0,1,1,1,0,1,0,1,36,7,m,White European,yes,yes,family member,Yes
+975,1,0,0,0,0,0,1,1,1,1,36,5,m,White European,no,yes,family member,Yes
+976,1,1,1,0,0,0,1,1,0,0,24,5,m,black,no,no,Others,Yes
+977,1,1,0,1,0,0,0,0,0,1,16,4,f,Latino,no,no,family member,Yes
+978,0,0,0,0,0,1,1,0,0,1,24,3,m,White European,no,no,family member,No
+979,1,0,1,1,1,1,0,1,1,0,30,7,m,White European,yes,no,family member,Yes
+980,1,1,1,1,1,1,1,0,0,0,36,7,m,asian,no,no,family member,Yes
+981,1,0,1,0,1,1,1,0,1,1,24,7,m,middle eastern,yes,no,family member,Yes
+982,0,0,0,1,1,0,1,1,0,1,36,5,m,south asian,yes,no,family member,Yes
+983,1,1,1,1,1,1,1,0,1,0,36,8,m,asian,no,no,family member,Yes
+984,1,1,1,1,1,1,1,1,1,1,34,10,f,White European,no,no,family member,Yes
+985,1,0,1,1,0,1,1,0,1,0,24,6,m,White European,no,no,family member,Yes
+986,1,1,1,0,1,1,0,0,1,1,23,7,m,White European,no,no,family member,Yes
+987,1,0,0,1,0,0,0,0,0,0,12,2,m,White European,no,no,family member,No
+988,1,1,1,1,1,1,1,0,1,1,30,9,f,middle eastern,no,no,family member,Yes
+989,0,0,0,0,1,0,1,1,0,1,36,4,m,south asian,yes,no,family member,Yes
+990,1,0,1,1,1,1,1,1,1,1,35,9,f,middle eastern,no,no,family member,Yes
+991,1,0,1,1,1,1,1,0,1,1,35,8,f,middle eastern,no,no,family member,Yes
+992,1,1,1,1,1,1,1,0,0,1,33,8,m,White European,no,no,family member,Yes
+993,1,0,0,1,0,0,1,0,0,1,34,4,m,asian,yes,no,family member,Yes
+994,1,1,1,1,1,1,1,1,1,1,24,10,f,Latino,no,no,Health care professional,Yes
+995,1,1,0,0,0,0,0,0,1,1,36,4,m,White European,yes,no,family member,Yes
+996,0,0,0,0,0,0,0,0,0,0,36,0,m,middle eastern,no,no,family member,No
+997,0,1,0,0,0,0,0,0,0,1,36,2,m,middle eastern,yes,no,family member,No
+998,0,0,0,1,0,0,0,0,1,1,36,3,m,asian,no,no,family member,No
+999,1,0,1,1,1,0,1,0,1,1,33,7,f,middle eastern,no,no,family member,Yes
+1000,0,1,1,1,0,1,0,0,0,0,23,4,f,Pacifica,yes,no,family member,Yes
+1001,0,0,0,0,0,1,0,0,0,1,36,2,m,Latino,no,no,family member,No
+1002,1,0,0,0,1,1,0,1,0,1,34,5,f,asian,no,no,family member,Yes
+1003,0,0,0,0,1,1,1,1,0,0,36,4,m,black,yes,no,Self,Yes
+1004,1,0,0,1,1,0,1,0,1,0,27,5,m,White European,no,no,family member,Yes
+1005,1,1,1,1,1,1,1,1,0,0,36,8,m,black,no,yes,family member,Yes
+1006,1,0,1,1,1,0,1,0,0,1,24,6,m,asian,no,no,family member,Yes
+1007,1,0,1,1,1,0,1,0,0,1,24,6,m,asian,no,no,family member,Yes
+1008,0,0,0,1,0,0,1,0,0,1,34,3,f,White European,no,yes,family member,No
+1009,1,1,1,1,1,1,1,1,1,0,32,9,m,south asian,yes,yes,family member,Yes
+1010,1,0,1,1,0,0,1,0,0,1,24,5,m,asian,no,no,family member,Yes
+1011,0,1,1,1,1,1,1,1,1,1,30,9,m,Latino,no,no,family member,Yes
+1012,0,1,0,0,1,1,0,0,1,0,36,4,m,White European,no,yes,family member,Yes
+1013,0,0,0,0,0,0,1,0,0,1,32,2,m,south asian,no,no,family member,No
+1014,1,1,1,1,1,1,1,1,1,0,30,9,m,middle eastern,no,no,family member,Yes
+1015,1,0,0,0,0,1,1,1,1,0,30,5,f,White European,no,no,family member,Yes
+1016,0,0,1,1,0,0,1,0,1,0,24,4,m,Latino,no,no,family member,Yes
+1017,0,1,0,0,1,0,1,1,0,1,36,5,m,Hispanic,no,no,family member,Yes
+1018,1,1,0,0,0,1,1,1,0,1,36,6,f,asian,no,no,family member,Yes
+1019,0,0,1,1,0,0,0,0,1,0,21,3,m,asian,no,no,family member,No
+1020,1,1,0,0,1,1,1,0,0,1,36,6,m,asian,no,no,family member,Yes
+1021,0,0,0,0,1,0,0,0,1,0,19,2,f,White European,yes,yes,family member,No
+1022,0,1,1,1,1,1,1,1,0,0,12,7,m,White European,no,no,family member,Yes
+1023,0,0,0,0,0,0,0,0,0,0,36,0,f,White European,no,yes,family member,No
+1024,1,1,0,0,0,0,0,1,0,1,36,4,m,White European,no,yes,family member,Yes
+1025,0,0,0,0,0,0,0,0,0,1,35,1,m,asian,yes,no,family member,No
+1026,0,0,0,0,0,0,1,1,0,1,23,3,m,asian,yes,no,family member,No
+1027,0,0,0,0,0,0,0,0,0,1,36,1,m,White European,no,no,family member,No
+1028,0,0,1,1,1,0,0,1,1,0,29,5,m,White European,no,no,family member,Yes
+1029,0,0,1,1,1,1,0,0,1,0,22,5,f,Latino,no,no,family member,Yes
+1030,1,1,0,1,0,1,1,1,1,1,36,8,m,White European,no,yes,family member,Yes
+1031,0,0,0,0,1,0,0,1,0,1,36,3,m,south asian,yes,no,family member,No
+1032,1,1,0,0,0,1,1,1,0,1,36,6,f,Others,no,yes,family member,Yes
+1033,1,0,1,1,1,0,1,0,0,0,32,5,m,White European,yes,no,family member,Yes
+1034,0,0,0,0,0,1,0,0,0,1,16,2,m,south asian,yes,yes,Health Care Professional,No
+1035,0,0,0,0,0,0,0,1,0,0,28,1,m,White European,no,no,family member,No
+1036,1,0,0,1,0,1,1,1,0,0,18,5,m,Others,yes,no,family member,Yes
+1037,1,1,0,1,0,1,1,1,0,0,14,6,f,asian,no,no,family member,Yes
+1038,0,0,1,0,0,0,0,0,0,0,12,1,m,White European,no,no,family member,No
+1039,1,1,0,0,0,0,1,0,1,0,26,4,m,asian,no,yes,family member,Yes
+1040,0,0,0,0,1,1,1,0,1,0,26,4,m,asian,no,yes,family member,Yes
+1041,0,0,0,0,0,0,0,0,0,1,25,1,m,White European,no,no,family member,No
+1042,0,0,0,1,0,0,1,0,0,0,25,2,m,White European,yes,no,family member,No
+1043,1,1,1,1,0,0,1,1,1,1,30,8,m,Hispanic,yes,no,family member,Yes
+1044,1,1,1,1,1,1,1,1,1,1,25,10,m,asian,no,yes,family member,Yes
+1045,1,1,1,1,1,1,1,1,1,1,25,10,m,asian,no,yes,family member,Yes
+1046,1,1,1,1,1,1,1,1,1,1,30,10,m,middle eastern,no,no,Health Care Professional,Yes
+1047,0,1,0,1,1,1,1,1,1,0,24,7,f,middle eastern,no,no,family member,Yes
+1048,1,1,0,0,1,1,1,0,0,0,30,5,f,White European,no,no,family member,Yes
+1049,0,0,0,0,0,0,0,0,0,0,30,0,f,White European,no,no,family member,No
+1050,0,0,0,0,0,0,0,0,0,1,24,1,f,White European,no,yes,family member,No
+1051,0,0,1,1,1,0,1,0,1,0,12,5,m,black,yes,no,family member,Yes
+1052,1,0,1,1,1,1,1,1,1,1,18,9,m,middle eastern,yes,no,family member,Yes
+1053,1,0,0,0,0,0,0,1,0,1,19,3,m,White European,no,yes,family member,No
+1054,1,1,0,0,1,1,0,1,1,0,24,6,m,asian,yes,yes,family member,Yes
+</script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var f1=function(v,d){return v.toFixed(d==null?1:d).replace('.',',')},fm=function(n){return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g,'.')};
+var norm=function(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,'')};
+var ITEMS=["No mira cuando lo llaman","Poco contacto visual","No señala para pedir","No señala para compartir","Sin juego simbólico","No sigue la mirada","No busca consolar","Primeras palabras atípicas","No usa gestos (adiós)","Mirada fija sin propósito"];
+var ETN={"white european":"Blanco europeo","asian":"Asiático","middle eastern":"Medio Oriente","south asian":"Sur de Asia","black":"Negro","hispanic":"Hispano","latino":"Latino","others":"Otros","mixed":"Mixto","pacifica":"Pacífico","native indian":"Indígena"};
+function parse(t,sep){var rows=[],r=[],f='',q=false;for(var i=0;i<t.length;i++){var c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){f+='"';i++}else q=false}else f+=c}else if(c=='"')q=true;else if(c==sep){r.push(f);f=''}else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(f);f='';if(r.length>1||r[0]!=='')rows.push(r);r=[]}else f+=c}if(f!==''||r.length){r.push(f);rows.push(r)}return rows}
+var mean=function(a){return a.reduce(function(x,y){return x+y},0)/a.length};
+var sd=function(a){var m=mean(a);return Math.sqrt(a.reduce(function(x,y){return x+(y-m)*(y-m)},0)/(a.length-1))};
+var med=function(a){var s=a.slice().sort(function(x,y){return x-y}),n=s.length;return n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2};
+function bars(rows,max,color){return rows.map(function(r){var th=color==='thr';return '<div class="bar"'+(th?' data-v="'+r[1]+'"':'')+'><span>'+r[0]+'</span><div class="t"><i style="width:'+Math.min(100,r[1]/max*100)+'%;'+(color&&!th?'background:'+color:'')+'"></i></div><em>'+f1(r[1])+' %'+(r[2]!=null?' <small class="mu">n='+fm(r[2])+'</small>':'')+'<b class="fg"></b></em></div>'}).join('')}
+function rate(R,key,order){var m={};R.forEach(function(r){var k=r[key];(m[k]=m[k]||[0,0]);m[k][0]++;m[k][1]+=r.alert});var ks=order||Object.keys(m).sort();return ks.filter(function(k){return m[k]}).map(function(k){return [k,m[k][1]/m[k][0]*100,m[k][0]]})}
+var TH={c:75,w:65};
+function recolor(){var E=document.querySelectorAll('.bar[data-v]'),i,v;for(i=0;i<E.length;i++){v=+E[i].getAttribute('data-v');E[i].querySelector('i').style.background=v>=TH.c?'var(--ac)':v>=TH.w?'var(--wa)':'var(--ac2)';E[i].querySelector('.fg').textContent=v>=TH.c?' ⚑':v>=TH.w?' ▲':''}
+E=document.querySelectorAll('.fgr');for(i=0;i<E.length;i++){v=+E[i].getAttribute('data-v');E[i].textContent=v>=TH.c?'⚑ ':v>=TH.w?'▲ ':''}if(window.__F)window.__F()}
+function erfc(x){var t=1/(1+0.3275911*x),y=t*(0.254829592+t*(-0.284496736+t*(1.421413741+t*(-1.453152027+t*1.061405429))));return y*Math.exp(-x*x)}
+function fit(X,y,it,lr){var d=X[0].length,n=X.length,w=new Array(d).fill(0),b=0;for(var t=0;t<it;t++){var g=new Array(d).fill(0),gb=0;for(var i=0;i<n;i++){var z=b,x=X[i];for(var j=0;j<d;j++)z+=w[j]*x[j];var e=1/(1+Math.exp(-z))-y[i];gb+=e;for(j=0;j<d;j++)g[j]+=e*x[j]}b-=lr*gb/n;for(j=0;j<d;j++)w[j]-=lr*(g[j]+w[j])/n}return{w:w,b:b}}
+var prob=function(m,x){var z=m.b;for(var j=0;j<x.length;j++)z+=m.w[j]*x[j];return 1/(1+Math.exp(-z))};
+function auc(p,y){var o=p.map(function(v,i){return [v,y[i]]}).sort(function(a,b){return a[0]-b[0]}),n=o.length,rk=[],i=0;while(i<n){var j=i;while(j+1<n&&o[j+1][0]===o[i][0])j++;for(var k=i;k<=j;k++)rk[k]=(i+j)/2+1;i=j+1}var r=0,pos=0;for(i=0;i<n;i++)if(o[i][1]===1){r+=rk[i];pos++}var neg=n-pos;return (r-pos*(pos+1)/2)/(pos*neg)}
+
+$('f').addEventListener('change',function(e){var fl=e.target.files[0];if(!fl)return;$('st').textContent='Procesando '+fl.name+'…';var rd=new FileReader();rd.onload=function(){setTimeout(function(){try{run(rd.result,fl.name)}catch(x){$('st').innerHTML='<span class="err">Error: '+x.message+'</span>'}},30)};rd.readAsText(fl,'utf-8')});
+$('tabs').addEventListener('click',function(e){var p=e.target.getAttribute&&e.target.getAttribute('data-p');if(!p)return;['p0','p1','p2','p3','p4','p5','p6'].forEach(function(i){$(i).className=i==p?'':'hide'});Array.prototype.forEach.call($('tabs').children,function(b){b.className=b.getAttribute('data-p')==p?'on':''})});
+
+['tc','tw'].forEach(function(i){$(i).addEventListener('input',function(){TH.c=+$('tc').value;TH.w=+$('tw').value;$('vtc').textContent=TH.c;$('vtw').textContent=TH.w;recolor()})});
+function run(t,name){window.__csv=t;if(!/nuevos/.test(name))window.__base=name;
+t=t.replace(/^\uFEFF/,'');var l0=t.split('\n')[0],sep=(l0.match(/;/g)||[]).length>(l0.match(/,/g)||[]).length?';':',';
+var R=parse(t,sep),H=R[0].map(norm),log=[];
+var col=function(){for(var i=0;i<arguments.length;i++){var k=H.indexOf(arguments[i]);if(k>=0)return k}return -1};
+var C={age:col('agemons','age'),sex:col('sex'),etn:col('ethnicity'),jau:col('jaundice'),fam:col('familymemwithasd','familymemberwithasd'),who:col('whocompletedthetest','whocompletedtest'),cls:col('classasdtraits','class'),id:col('caseno')},A=[],miss=[];
+for(var i=1;i<=10;i++){A.push(col('a'+i));if(A[i-1]<0)miss.push('A'+i)}
+['age','sex','etn','jau','fam'].forEach(function(k){if(C[k]<0)miss.push(k)});
+if(miss.length)throw new Error('faltan columnas: '+miss.join(', ')+'. Se esperaba el formato del dataset Toddler Autism.');
+var raw=R.slice(1).filter(function(r){return r.length>=Math.max(C.age,C.sex)+1}),nulls=0,seen={},dupE=0,seenP={},dupP=0;
+var yn=function(v){return /^(y|s)/i.test(String(v).trim())?'Sí':'No'};
+var D=raw.map(function(r){
+var key=r.join('|');if(seen[key])dupE++;seen[key]=1;
+var pk=r.filter(function(_,i){return i!==C.id}).join('|');if(seenP[pk])dupP++;seenP[pk]=1;
+[C.age,C.sex,C.etn,C.jau,C.fam].concat(A).forEach(function(k){if(String(r[k]).trim()==='')nulls++});
+var a=A.map(function(k){return +r[k]===1?1:0}),s=String(r[C.sex]).trim().toLowerCase(),eth=String(r[C.etn]).trim().toLowerCase();
+var sc=a.reduce(function(x,y){return x+y},0);
+return{a:a,age:+r[C.age],sex:/^f/.test(s)?'Femenino':'Masculino',etn:ETN[eth]||(eth?eth.charAt(0).toUpperCase()+eth.slice(1):'Otros'),jau:yn(r[C.jau]),fam:yn(r[C.fam]),who:C.who>=0?String(r[C.who]).trim().toLowerCase():'',score:sc,alert:sc>3?1:0,cls:C.cls>=0?String(r[C.cls]).trim().toLowerCase():null}});
+D=D.filter(function(r){return isFinite(r.age)});var n=D.length;if(n<30)throw new Error('el archivo tiene muy pocas filas ('+n+')');
+var nEt={};D.forEach(function(r){nEt[r.etn]=(nEt[r.etn]||0)+1});var raras=Object.keys(nEt).filter(function(k){return nEt[k]<30||k=='Otros'});
+D.forEach(function(r){r.etg=raras.indexOf(r.etn)>=0?'Otras / mixtas':r.etn;r.ga=r.age<=17?'12-17 meses':r.age<=23?'18-23 meses':r.age<=29?'24-29 meses':'30-36 meses'});
+var mism=C.cls>=0?D.filter(function(r){return /^(yes|alerta)/.test(r.cls)!==(r.alert===1)}).length:null,fuera=D.filter(function(r){return r.age<12||r.age>36}).length;
+log=[['Archivo',name+' · separador «'+sep+'»'],['Filas × columnas',fm(n)+' × '+R[0].length],['Datos faltantes (columnas usadas)',fm(nulls)+(nulls?' (se tratan como 0 en los ítems)':' · ninguno')],['Duplicados exactos',fm(dupE)+' (se conservan, no se eliminan)'],['Perfiles repetidos sin Case_No',fm(dupP)+' (se conservan: son niños distintos)'],['Etnias agrupadas (n<30 u «Otros»)',raras.join(', ')||'ninguna'],['Edades fuera de 12–36 meses',fm(fuera)],['Clase del archivo vs. regla puntaje > 3',mism==null?'sin columna de clase':(mism?fm(mism)+' discrepancias':'coinciden en todos los casos')],['Variables derivadas','Total_banderas, Alerta, Grupo_edad, Etnia_agrupada']];
+$('p0').innerHTML='<h2>Depuración de los datos</h2><div class="card"><table><tr><th>Paso</th><th>Resultado</th></tr>'+log.map(function(x){return '<tr><td>'+x[0]+'</td><td style="text-align:left;white-space:normal">'+x[1]+'</td></tr>'}).join('')+'</table></div><p class="note">La clase de alerta se recalcula como puntaje &gt; 3, regla del Q-CHAT-10.</p>';
+
+// ---- descriptivo
+var al=D.reduce(function(x,r){return x+r.alert},0),ages=D.map(function(r){return r.age}),scs=D.map(function(r){return r.score});
+var q=function(a,nm){return '<tr><td>'+nm+'</td><td>'+fm(a.length)+'</td><td>'+f1(mean(a),2)+'</td><td>'+f1(med(a),1)+'</td><td>'+f1(sd(a),2)+'</td><td>'+Math.min.apply(0,a)+'</td><td>'+Math.max.apply(0,a)+'</td></tr>'};
+var ind=ITEMS.map(function(nm,i){return [nm,D.reduce(function(x,r){return x+r.a[i]},0)/n*100]}).sort(function(a,b){return b[1]-a[1]});
+var dist=[];for(var k=0;k<=10;k++)dist.push(D.filter(function(r){return r.score===k}).length);var mx=Math.max.apply(0,dist);
+var ed=rate(D,'ga',['12-17 meses','18-23 meses','24-29 meses','30-36 meses']),topEd=ed.slice().sort(function(a,b){return b[1]-a[1]})[0];
+$('p1').innerHTML='<h2>Análisis descriptivo</h2><div class="grid"><div class="card kpi"><b>'+fm(n)+'</b><span>Niños evaluados</span></div><div class="card kpi"><b>'+fm(al)+'</b><span>En alerta (puntaje &gt; 3)</span></div><div class="card kpi"><b>'+f1(al/n*100)+' %</b><span>% en alerta</span></div><div class="card kpi"><b>'+f1(mean(scs),2)+'</b><span>Puntaje promedio</span></div><div class="card kpi"><b>'+f1(mean(ages))+'</b><span>Edad promedio (meses)</span></div></div>'+
+'<div class="card"><h3>Variables cuantitativas</h3><table><tr><th>Variable</th><th>n</th><th>Promedio</th><th>Mediana</th><th>Desv. est.</th><th>Mín.</th><th>Máx.</th></tr>'+q(ages,'Edad (meses)')+q(scs,'Puntaje Q-CHAT-10')+'</table></div>'+
+'<div class="two"><div class="card"><h3>Banderas más frecuentes</h3>'+bars(ind,80,'var(--ac)')+'</div><div class="card"><h3>Distribución del puntaje</h3><div class="cols">'+dist.map(function(v,i){return '<div><i style="height:'+(v/mx*120)+'px;background:'+(i>3?'var(--ac)':'var(--ok)')+'"></i>'+i+'</div>'}).join('')+'</div><p class="note">Rojo: puntaje &gt; 3 (alerta).</p></div></div>'+
+'<div class="two"><div class="card"><h3>% en alerta por rango de edad</h3>'+bars(ed,100,'thr')+'<h3 style="margin-top:14px">por sexo</h3>'+bars(rate(D,'sex'),100,'thr')+'</div><div class="card"><h3>por ictericia</h3>'+bars(rate(D,'jau'),100,'thr')+'<h3 style="margin-top:14px">por antecedente familiar</h3>'+bars(rate(D,'fam'),100,'thr')+'<h3 style="margin-top:14px">por etnia (agrupada)</h3>'+bars(rate(D,'etg'),100,'thr')+'</div></div>';
+
+// ---- predictivo
+var cats={sex:[],jau:[],fam:[],etg:[]};Object.keys(cats).forEach(function(k){cats[k]=Array.from(new Set(D.map(function(r){return r[k]}))).sort()});
+var mu=mean(ages),s0=sd(ages),names=[];Object.keys(cats).forEach(function(k){cats[k].forEach(function(c){names.push(k+':'+c)})});names.push('age','age2');
+var vec=function(r){return names.map(function(nm){return nm==='age'?(r.age-mu)/s0:nm==='age2'?Math.pow((r.age-mu)/s0,2):(r[nm.split(':')[0]]===nm.split(':')[1]?1:0)})};
+var X=D.map(vec),y=D.map(function(r){return r.alert}),oof=new Array(n),seed=42,idx=D.map(function(_,i){return i});
+for(var i2=n-1;i2>0;i2--){seed=(seed*1664525+1013904223)%4294967296;var j2=seed%(i2+1),tmp=idx[i2];idx[i2]=idx[j2];idx[j2]=tmp}
+for(var fo=0;fo<5;fo++){var tr=[],te=[];idx.forEach(function(v,p){(p%5===fo?te:tr).push(v)});var m=fit(tr.map(function(v){return X[v]}),tr.map(function(v){return y[v]}),400,0.6);te.forEach(function(v){oof[v]=prob(m,X[v])})}
+var AUC=auc(oof,y),acc=oof.filter(function(p,i){return (p>0.5?1:0)===y[i]}).length/n,pr=al/n,base=Math.max(pr,1-pr);
+var srt=oof.slice().sort(function(a,b){return a-b}),q1=srt[Math.floor(n/3)],q2=srt[Math.floor(2*n/3)];
+var lv=function(p){return p<q1?0:p<q2?1:2},LN=['Bajo','Medio','Alto'],LC=['var(--ok)','var(--wa)','var(--ac)'];
+var lr=[0,1,2].map(function(g){var ii=oof.map(function(p,i){return lv(p)===g?i:-1}).filter(function(v){return v>=0});return [LN[g],ii.reduce(function(s,i){return s+y[i]},0)/ii.length*100,ii.length]});
+var MF=fit(X,y,500,0.6);
+var sel=function(id,lab,arr){return '<label for="'+id+'">'+lab+'</label><select id="'+id+'">'+arr.map(function(c){return '<option>'+c+'</option>'}).join('')+'</select>'};
+$('p2').innerHTML='<h2>Análisis predictivo</h2><p class="mu">Regresión logística con el perfil del niño (edad, sexo, ictericia, antecedente familiar y etnia). No usa los ítems A1–A10: el puntaje sale de ellos y la predicción sería trivial. Se evalúa con validación cruzada de 5 grupos.</p><div class="grid"><div class="card kpi"><b>'+f1(AUC,2)+'</b><span>AUC (0,5 = azar)</span></div><div class="card kpi"><b>'+f1(acc*100)+' %</b><span>Exactitud del modelo</span></div><div class="card kpi"><b>'+f1(base*100)+' %</b><span>Exactitud base (clase mayoritaria)</span></div></div><div class="two"><div class="card"><h3>% real en alerta por nivel de riesgo del modelo</h3>'+bars(lr,100,'thr')+'<p class="note">Los niveles son terciles de la probabilidad estimada.</p></div><div class="card"><h3>Simulador de perfil</h3>'+sel('s1','Sexo',cats.sex)+'<label for="s2">Edad: <b id="v2">27</b> meses</label><input type="range" id="s2" min="12" max="36" value="27">'+sel('s3','Ictericia',cats.jau)+sel('s4','Antecedente familiar',cats.fam)+sel('s5','Etnia',cats.etg)+'<div style="margin-top:14px"><div class="big" id="op">–</div><span class="pill" id="on">–</span></div></div></div><p><b>Lectura:</b> '+(AUC<0.7?'el perfil por sí solo discrimina poco; la señal real está en las banderas conductuales. Úsalo para explorar tendencias, no para decidir sobre un niño.':'el perfil aporta capacidad de discriminación moderada, pero sigue sin ser un diagnóstico.')+'</p>';
+var sim=function(){var r={sex:$('s1').value,age:+$('s2').value,jau:$('s3').value,fam:$('s4').value,etg:$('s5').value};$('v2').textContent=r.age;var p=prob(MF,vec(r)),g=lv(p);$('op').textContent=f1(p*100)+' %';$('on').textContent='Nivel '+LN[g].toLowerCase();$('on').style.background=LC[g]};
+['s1','s2','s3','s4','s5'].forEach(function(i){$(i).addEventListener('input',sim)});sim();
+
+// ---- diagnóstica
+var seg=[];[['sex','Sexo'],['jau','Ictericia'],['fam','Antecedente familiar'],['ga','Edad'],['etg','Etnia']].forEach(function(p){Array.from(new Set(D.map(function(r){return r[p[0]]}))).sort().forEach(function(c){var a=0,b=0,c1=0,d1=0;D.forEach(function(r){if(r[p[0]]===c){r.alert?a++:b++}else{r.alert?c1++:d1++}});var nn=a+b;if(nn<30||c1+d1<30)return;var N=nn+c1+d1,chi=N*Math.pow(a*d1-b*c1,2)/(nn*(c1+d1)*(a+c1)*(b+d1));seg.push([p[1]+': '+c,nn,a/nn*100,(a/nn)/(c1/(c1+d1)),chi,erfc(Math.sqrt(chi/2))])})});
+seg.sort(function(a,b){return a[5]-b[5]});
+var pairs=[];for(var u=0;u<10;u++)for(var v=u+1;v<10;v++){var n11=0,n10=0,n01=0,n00=0;D.forEach(function(r){var x=r.a[u],z=r.a[v];if(x&&z)n11++;else if(x)n10++;else if(z)n01++;else n00++});pairs.push([ITEMS[u]+' ↔ '+ITEMS[v],(n11*n00-n10*n01)/Math.sqrt((n11+n10)*(n01+n00)*(n11+n01)*(n10+n00))])}
+pairs.sort(function(a,b){return b[1]-a[1]});
+var fa=seg.filter(function(s){return s[0].indexOf('Antecedente')===0&&s[5]>=0.05}).length>0;
+$('p4').innerHTML='<h2>Análisis diagnóstico: ¿por qué se alertan más estos niños?</h2><p class="mu">Cada segmento se compara con el resto de la muestra: riesgo relativo (RR) y prueba chi-cuadrado. ⚑ y ▲ siguen los umbrales del menú lateral. Describe asociaciones, no causas.</p><div class="card"><table><tr><th>Segmento</th><th>n</th><th>% en alerta</th><th>RR vs resto</th><th>χ²</th><th>p</th><th>Lectura</th></tr>'+seg.map(function(s){return '<tr><td><span class="fgr" data-v="'+s[2]+'"></span>'+s[0]+'</td><td>'+fm(s[1])+'</td><td>'+f1(s[2])+' %</td><td>'+f1(s[3],2)+'</td><td>'+f1(s[4],1)+'</td><td>'+(s[5]<0.001?'&lt; 0,001':f1(s[5],3))+'</td><td>'+(s[5]<0.05?(s[3]>1?'Más alerta que el resto':'Menos alerta que el resto'):'Compatible con azar')+'</td></tr>'}).join('')+'</table></div><div class="two"><div class="card"><h3>Banderas que aparecen juntas (correlación φ)</h3>'+pairs.slice(0,6).map(function(x){return '<div class="bar"><span>'+x[0]+'</span><div class="t"><i style="width:'+Math.max(0,x[1]*200)+'%"></i></div><em>φ '+f1(x[1],2)+'</em></div>'}).join('')+'<p class="note">Un φ alto indica que ambas conductas suelen reportarse a la vez.</p></div><div class="card"><h3>Lectura diagnóstica</h3><ul>'+seg.filter(function(s){return s[5]<0.05&&s[3]>1}).slice(0,3).map(function(s){return '<li><b>'+s[0]+'</b>: '+f1(s[2])+' % en alerta (RR '+f1(s[3],2)+').</li>'}).join('')+(fa?'<li>El antecedente familiar no separa a los niños en esta muestra.</li>':'')+'<li>Son asociaciones en una muestra autoseleccionada: no prueban causalidad.</li></ul></div></div>';
+var topSeg=seg.slice().sort(function(a,b){return b[2]-a[2]})[0],urg=D.filter(function(r){return r.score>=8}).length/n*100,c6=D.filter(function(r){return r.score>=6}).length;
+$('p5').innerHTML='<h2>Guion de sustentación (5 minutos)</h2><div class="card"><ol><li><b>Contexto.</b> '+fm(n)+' cuestionarios Q-CHAT-10 de niños de 12 a 36 meses. Es un tamizaje: una alerta indica derivar a valoración, no diagnostica.</li><li><b>¿Qué pasó? (descriptiva).</b> '+f1(pr*100)+' % supera el umbral; las banderas más frecuentes son «'+ind[0][0].toLowerCase()+'» ('+f1(ind[0][1])+' %) y «'+ind[1][0].toLowerCase()+'» ('+f1(ind[1][1])+' %).</li><li><b>¿Por qué? (diagnóstica).</b> El segmento más crítico es «'+topSeg[0]+'» con '+f1(topSeg[2])+' % en alerta; cada segmento se contrastó contra el resto con chi-cuadrado.</li><li><b>¿Qué podría pasar? (predictiva).</b> Un modelo de perfil logra un AUC de '+f1(AUC,2)+': discrimina poco, la señal está en las banderas conductuales.</li><li><b>¿Qué hacer? (prescriptiva).</b> Tamizar a todos, reforzar '+topEd[0]+' y priorizar por niveles: '+fm(c6)+' niños ('+f1(c6/n*100)+' %) requieren valoración prioritaria o urgente.</li></ol></div><h3 style="margin-top:16px">Preguntas probables</h3><div class="card"><ul><li><b>¿Por qué no usaron A1–A10 en el modelo?</b> Porque el puntaje es su suma: predecir la alerta con ellos sería circular.</li><li><b>¿Qué significa un AUC de '+f1(AUC,2)+'?</b> Que el modelo ordena apenas mejor que el azar (0,5).</li><li><b>¿El '+f1(pr*100)+' % es la prevalencia?</b> No: es una muestra autoseleccionada de usuarios de una app de tamizaje.</li><li><b>¿Cómo se fijaron los umbrales de alerta del tablero?</b> Son ajustables en el menú lateral; por defecto 75 % (crítico) y 65 % (atención), alrededor del promedio de '+f1(pr*100,0)+' %.</li></ul></div>';
+window.__F=function(){var st=function(v,c,w){return v>=c?'var(--ac)':v>=w?'var(--wa)':'var(--ok)'};
+var F=[['% en alerta del tamizaje',f1(pr*100)+' %',st(pr*100,TH.c,TH.w),'crítico ≥ '+TH.c+' % · atención ≥ '+TH.w+' %'],['Segmento más crítico',f1(topSeg[2])+' %',st(topSeg[2],TH.c,TH.w),topSeg[0]],['Derivación urgente (puntaje ≥ 8)',f1(urg)+' %',st(urg,25,15),'crítico ≥ 25 % · atención ≥ 15 %'],['Capacidad predictiva (AUC)',f1(AUC,2),AUC<0.65?'var(--ac)':AUC<0.75?'var(--wa)':'var(--ok)','débil < 0,65 · moderado < 0,75']];
+$('flags').innerHTML=F.map(function(x){return '<div class="flag" style="--c:'+x[2]+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><span>'+x[3]+'</span></div>'}).join('')};
+// ---- prescriptivo
+var tiers=[['Seguimiento rutinario','0–3 puntos',function(s){return s<=3},'var(--ok)'],['Observación reforzada','4–5 puntos',function(s){return s>=4&&s<=5},'var(--ac2)'],['Valoración prioritaria','6–7 puntos',function(s){return s>=6&&s<=7},'var(--wa)'],['Derivación urgente','8–10 puntos',function(s){return s>=8},'var(--ac)']];
+var ord=oof.map(function(p,i){return i}).sort(function(a,b){return oof[b]-oof[a]}),G=[0],cum=0;
+for(var d=1;d<=10;d++){for(var k2=Math.round((d-1)*n/10);k2<Math.round(d*n/10);k2++)cum+=y[ord[k2]];G.push(cum/al)}
+var pts=function(f){return G.map(function(g,i){return (i*30)+','+(200-f(g,i)*200)}).join(' ')};
+$('p3').innerHTML='<h2>Análisis prescriptivo</h2><p class="mu">Propuesta de priorización por puntaje. Es una propuesta de trabajo, no una norma clínica: la define el equipo de salud.</p><div class="grid">'+tiers.map(function(t){var c=D.filter(function(r){return t[2](r.score)}).length;return '<div class="card tier" style="--c:'+t[3]+'"><span class="note">'+t[1]+'</span><h3>'+t[0]+'</h3><b>'+f1(c/n*100)+' %</b><div class="note">'+fm(c)+' niños</div></div>'}).join('')+'</div><div class="two"><div class="card"><h3>¿Y si solo se pudiera atender a una parte de los niños?</h3><label for="cp">Capacidad: <b id="vc">30</b> % de los niños, priorizados por el modelo de perfil</label><input type="range" id="cp" min="10" max="100" step="10" value="30"><p id="oc"></p><p class="note">Curva de ganancia: modelo (rojo) frente al azar (gris).</p></div><div class="card"><svg viewBox="-8 -6 316 216" width="100%" role="img" aria-label="Curva de ganancia"><rect x="0" y="0" width="300" height="200" fill="none" stroke="var(--bd)"/><polyline points="'+pts(function(g,i){return i/10})+'" fill="none" stroke="var(--mu)" stroke-dasharray="5 4"/><polyline points="'+pts(function(g){return g})+'" fill="none" stroke="var(--ac)" stroke-width="3"/></svg></div></div><div class="card" style="margin-top:12px"><h3>Optimización: umbral de derivación según la capacidad de valoración</h3><label for="vq">Capacidad de valoraciones profesionales: <b id="vqn"></b> niños</label><input type="range" id="vq" min="'+Math.round(n*0.05)+'" max="'+n+'" step="10" value="'+Math.round(n*0.3)+'"><p id="oq"></p><div id="tq"></div></div><h3 style="margin-top:18px">Recomendaciones</h3><ul><li><b>Tamizar a todos,</b> no solo a perfiles «de riesgo», si la ganancia del perfil sobre el azar es pequeña (ver capacidad).</li><li><b>Reforzar la observación en '+topEd[0]+'</b> (mayor % en alerta: '+f1(topEd[1])+' %).</li><li><b>Capacitar a cuidadores y agentes educativos</b> en las banderas más frecuentes: '+ind[0][0].toLowerCase()+', '+ind[1][0].toLowerCase()+' y '+ind[2][0].toLowerCase()+'.</li><li><b>Definir una ruta de derivación por niveles,</b> con valoración prioritaria desde 6 puntos y derivación urgente desde 8.</li><li><b>Registrar ubicación y fecha</b> para poder analizar zonas y picos temporales.</li></ul><p class="note">Limitaciones: muestra autoseleccionada, respondida casi siempre por un familiar, sin ubicación ni fecha; los resultados son descriptivos y no prueban causalidad.</p>';
+var cap=function(){var kk=+$('cp').value,g=G[kk/10]*100;$('vc').textContent=kk;$('oc').innerHTML='Al priorizar al '+kk+' % de niños con mayor probabilidad se capta el <b>'+f1(g)+' %</b> de las alertas. Al azar se captaría el '+kk+' %: ganancia de <b>'+f1(g-kk)+' puntos</b>.'};$('cp').addEventListener('input',cap);cap();
+var oq=function(){var cp=+$('vq').value,ks=[];$('vqn').textContent=fm(cp);for(var k=4;k<=10;k++)ks.push([k,D.filter(function(r){return r.score>=k}).length]);var kk=ks.filter(function(x){return x[1]<=cp})[0]||ks[ks.length-1];
+$('oq').innerHTML='Con capacidad para <b>'+fm(cp)+'</b> valoraciones, el umbral recomendado es <b>puntaje ≥ '+kk[0]+'</b>: se derivan '+fm(kk[1])+' niños ('+f1(kk[1]/n*100)+' % de la muestra y '+f1(kk[1]/al*100)+' % de las alertas del instrumento). El resto de las alertas pasa a observación reforzada.';
+$('tq').innerHTML='<table><tr><th>Umbral</th><th>Derivados</th><th>% de niños</th><th>Frente a la capacidad</th></tr>'+ks.map(function(x){return '<tr><td>≥ '+x[0]+'</td><td>'+fm(x[1])+'</td><td>'+f1(x[1]/n*100)+' %</td><td style="color:'+(x[1]<=cp?'var(--ok)':'var(--ac)')+'">'+(x[1]<=cp?'cubierta':'excede')+'</td></tr>'}).join('')+'</table>'};$('vq').addEventListener('input',oq);oq();
+recolor();$('st').innerHTML='✔ '+fm(n)+' registros procesados de <b>'+name+'</b>.';window.__S={n:n,al:al,auc:AUC};if(window.__after)window.__after();
+}
+window.__run=run;setTimeout(function(){try{var e=document.getElementById('d1');if(e){window.__base='Toddler Autism dataset July 2018.csv';var t0=e.textContent,L0=[];try{L0=JSON.parse(localStorage.getItem('bf_nuevos')||'[]')}catch(x){}if(L0.length)t0=t0.replace(/\s*$/,'')+'\n'+L0.join('\n')+'\n';run(t0,'Toddler Autism dataset July 2018.csv (precargado'+(L0.length?' + '+L0.length+' nuevos':'')+')');var b=document.querySelector('#tabs button[data-p="p1"]');if(b)b.click()}}catch(x){$('st').innerHTML='<span class="err">Error al precargar: '+x.message+'</span>'}},40);
+})();
+</script><script>
+(function(){var $=function(i){return document.getElementById(i)},f1=function(v,d){return v.toFixed(d==null?1:d).replace('.',',')},fm=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')};
+var CR=[['Ajuste a primera infancia',30],['Calidad de la etiqueta',20],['Tamaño de muestra',20],['Variables cuanti y cuali',15],['Fuente verificable',15]];
+var DS=[['Toddlers · Kaggle (Thabtah, 2018)','Kaggle',1054,'19','12–36 meses',[5,5,0,4,5],'Q-CHAT-10; clase = puntaje > 3; sin nulos'],
+['Combinado toddler–adulto (zip)','Kaggle (compilado)',6075,'15','1–80 años',[2,1,0,2,3],'Los 1.054 toddlers figuran todos como «NO»: etiqueta inconsistente'],
+['Niños · UCI','UCI',292,'≈21','4–11 años',[2,3,0,5,5],'Tiene valores faltantes'],
+['Adolescentes · UCI','UCI',104,'≈21','12–16 años',[1,3,0,5,5],'Muestra apenas superior a 100'],
+['Adultos · UCI','UCI',704,'≈21','17–64 años',[0,3,0,5,5],'No corresponde a primera infancia']];
+DS.forEach(function(d){d[5][2]=Math.min(5,d[2]/200)});
+var score=function(w){return DS.map(function(d){return d[5].reduce(function(s,v,i){return s+v*w[i]/100},0)})};
+var T=score(CR.map(function(c){return c[1]})),mx=Math.max.apply(0,T),best=T.indexOf(mx),wins=0;
+for(var k=0;k<5;k++){var t=score(CR.map(function(c,i){return i==k?50:12.5}));if(t.indexOf(Math.max.apply(0,t))==best)wins++}
+var order=DS.map(function(d,i){return i}).sort(function(a,b){return T[b]-T[a]});
+var CMP={"Toddlers (≤3 años)": {"n": 1054, "pct": 0.0, "score": 5.21, "edad": 2.4, "m": 69.7, "j": 27.3, "f": 16.1}, "Niños (4–11)": {"n": 1105, "pct": 47.9, "score": 6.09, "edad": 6.7, "m": 67.1, "j": 24.7, "f": 20.3}, "Adolescentes (12–17)": {"n": 711, "pct": 50.4, "score": 6.05, "edad": 14.3, "m": 43.9, "j": 13.5, "f": 21.1}, "Adultos (18+)": {"n": 3205, "pct": 28.6, "score": 4.92, "edad": 31.3, "m": 53.7, "j": 12.1, "f": 18.0}};
+var rows=order.map(function(i){var d=DS[i],w=i==best;return '<tr'+(w?' style="font-weight:700;background:color-mix(in srgb,var(--ok) 14%,transparent)"':'')+'><td>'+(w?'✔ ':'')+d[0]+'</td><td>'+d[1]+'</td><td>'+fm(d[2])+'</td><td>'+d[3]+'</td><td>'+d[4]+'</td>'+d[5].map(function(v){return '<td>'+f1(v,1)+'</td>'}).join('')+'<td>'+f1(T[i],2)+'</td><td style="text-align:left;white-space:normal;min-width:220px">'+d[6]+'</td></tr>'}).join('');
+var g=Object.keys(CMP),mxs=7;
+var cmpRows=g.map(function(k){var c=CMP[k],bad=c.pct===0;return '<tr><td>'+k+'</td><td>'+fm(c.n)+'</td><td>'+f1(c.edad)+'</td><td>'+f1(c.score,2)+'</td><td>'+f1(c.m)+' %</td><td>'+f1(c.j)+' %</td><td>'+f1(c.f)+' %</td><td'+(bad?' style="color:var(--ac);font-weight:700"':'')+'>'+f1(c.pct)+' %'+(bad?' ⚑':'')+'</td></tr>'}).join('');
+var bars=g.map(function(k){var c=CMP[k];return '<div class="bar"><span>'+k+'</span><div class="t"><i style="width:'+(c.score/10*100)+'%"></i></div><em>'+f1(c.score,2)+'</em></div>'}).join('');
+$('p6').innerHTML='<h2>Comparación de datasets</h2><p class="mu">Se evaluaron cinco fuentes con los criterios de la Fase 2 (más de 100 registros, variables cuantitativas y cualitativas, fuente verificable). Cada criterio se califica de 0 a 5; el tamaño usa la fórmula mín(5; filas/200).</p><div class="card"><table><tr><th>Dataset</th><th>Fuente</th><th>Filas</th><th>Vars.</th><th>Edades</th>'+CR.map(function(c){return '<th>'+c[0]+' ('+c[1]+' %)</th>'}).join('')+'<th>Total /5</th><th>Observación</th></tr>'+rows+'</table></div><div class="card" style="margin-top:12px;border-left:6px solid var(--ok)"><h3>Decisión: se mantiene el dataset precargado</h3><p style="margin:0"><b>'+DS[best][0]+'</b> obtiene <b>'+f1(T[best],2)+' / 5</b> y sigue primero en <b>'+wins+' de 5</b> escenarios de sensibilidad (50 % de peso a cada criterio, 12,5 % a los demás). Es el único hecho para primera infancia, con etiqueta coherente con el puntaje y sin nulos.</p></div><h3 style="margin-top:20px">Comparación con datos reales por grupo de edad</h3><div class="card"><table><tr><th>Grupo (archivo combinado)</th><th>n</th><th>Edad media (años)</th><th>Puntaje medio</th><th>% varones</th><th>% ictericia</th><th>% antec. familiar</th><th>% «YES» en el archivo</th></tr>'+cmpRows+'</table><p class="note">⚑ En el combinado los 1.054 toddlers figuran todos como «NO», mientras que en el archivo propio de toddlers 728 (69,1 %) superan el umbral. Con ese archivo la etiqueta del combinado no sirve para primera infancia. Los grupos mayores usan la regla del AQ-10 (puntaje &gt; 6); los toddlers, la del Q-CHAT-10 (&gt; 3), así que los % no son directamente comparables: compara el puntaje medio.</p><h3 style="margin-top:14px">Puntaje medio por grupo (0–10)</h3>'+bars+'</div><div class="card" style="margin-top:12px"><h3>¿Y la conexión en línea?</h3><p style="margin:0">Una página publicada no puede consultar otros sitios desde el navegador, así que aquí no se descargan datasets en vivo: los datos del archivo combinado se calcularon antes con Python y las cifras de UCI vienen de su documentación. Para descargar y comparar en línea usa <b>comparar_datasets_online.py</b> en tu computador.</p></div>';
+})();
+</script><script>
+(function(){var $=function(i){return document.getElementById(i)},f1=function(v){return v.toFixed(1).replace('.',',')},fm=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')};
+var ST=['home','problema','preguntas','fuentes','dataset','limites','aprende','form'],DB=['p0','p1','p2','p3','p4','p5','p6'],CO=['--b','--o','--g','--p','--r','--t','--y','--k'];
+function go(n){var d=DB.indexOf(n)>=0;ST.forEach(function(k){$('g-'+k).className='pg'+(!d&&k==n?'':' hide')});$('app').className=d?'shell':'hide shell';if(d){var b=document.querySelector('#tabs button[data-p="'+n+'"]');if(b)b.click()}window.scrollTo(0,0)}
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-go]');if(!t)return;var g=t.getAttribute('data-go');if(g=='subir'){go('dataset');$('subir').scrollIntoView()}else go(g);if(document.activeElement&&document.activeElement.blur)document.activeElement.blur()});
+$('lg').innerHTML='BanderasRojas!'.split('').map(function(c,i){return '<span style="color:var('+CO[i%8]+')">'+c+'</span>'}).join('');
+var W=[['01','Problema y contexto','Por qué importa detectar a tiempo las banderas rojas.','problema'],['02','Preguntas analíticas','Las cinco preguntas que guían el estudio.','preguntas'],['03','Fuentes y dataset','De dónde vienen los datos y cómo se verificaron.','dataset'],['04','Calidad y depuración','Nulos, duplicados, categorías y rangos.','p0'],['05','Descriptiva','¿Qué pasó? KPIs, banderas y perfiles.','p1'],['06','Diagnóstica','¿Por qué pasó? Riesgo relativo y chi-cuadrado.','p4'],['07','Predictiva','¿Qué podría pasar? Modelo y simulador de riesgo.','p2'],['08','Prescriptiva','¿Qué hacer? Niveles de priorización y optimización.','p3']];
+var sv='<svg class="wheel" viewBox="0 0 300 300" width="100%" role="img" aria-label="Rueda de secciones">';
+W.forEach(function(w,i){var a0=i*Math.PI/4-Math.PI/2,a1=a0+Math.PI/4,R=145,r=55,m=a0+Math.PI/8,c=function(a,q){return (150+q*Math.cos(a)).toFixed(1)+','+(150+q*Math.sin(a)).toFixed(1)};
+sv+='<path data-i="'+i+'" d="M'+c(a0,r)+' L'+c(a0,R)+' A'+R+','+R+' 0 0 1 '+c(a1,R)+' L'+c(a1,r)+' A'+r+','+r+' 0 0 0 '+c(a0,r)+'Z" style="fill:var('+CO[i]+')" stroke="#fff" stroke-width="3"/><text x="'+(150+100*Math.cos(m)).toFixed(1)+'" y="'+(156+100*Math.sin(m)).toFixed(1)+'" text-anchor="middle" font-size="18" font-weight="700" fill="'+(i==6?'#23304a':'#fff')+'" pointer-events="none">'+w[0]+'</text>'});
+$('wh').innerHTML=sv+'</svg>';
+$('wh').addEventListener('mouseover',function(e){var i=e.target.getAttribute&&e.target.getAttribute('data-i');if(i!=null){var w=W[i];$('wi').innerHTML='<b style="font-size:22px">'+w[0]+' · '+w[1]+'</b><br>'+w[2]}});
+$('wh').addEventListener('click',function(e){var i=e.target.getAttribute&&e.target.getAttribute('data-i');if(i!=null)go(W[i][3])});
+$('tl').innerHTML=W.map(function(w,i){return '<div class="tile'+(i==6?' dk':'')+'" data-go="'+w[3]+'" style="--c:var('+CO[i]+')"><b>'+w[0]+'</b>'+w[1]+'<small>'+w[2]+'</small></div>'}).join('');
+window.__after=function(){var S=window.__S;$('h-pct').textContent=f1(S.al/S.n*100)+' %';$('h-sub').textContent=fm(S.al)+' de '+fm(S.n)+' niños superan el umbral';$('h-n').textContent=fm(S.n)};
+if(window.__S)window.__after();
+})();
+</script><script>
+(function(){var $=function(i){return document.getElementById(i)},K='bf_nuevos',norm=function(x){return String(x).toLowerCase().replace(/[^a-z0-9]/g,'')};
+var Q=[['¿Te mira cuando lo llamas por su nombre?','Sí, casi siempre','A veces, rara vez o nunca'],['¿Qué tan fácil es lograr contacto visual con el niño?','Fácil','Difícil o muy difícil'],['¿Señala para pedir algo que no alcanza?','Sí, lo hace','A veces, rara vez o nunca'],['¿Señala para compartir un interés contigo?','Sí, lo hace','A veces, rara vez o nunca'],['¿Hace juego simbólico (cuida una muñeca, habla por un teléfono de juguete)?','Sí, lo hace','A veces, rara vez o nunca'],['¿Sigue con la mirada hacia donde tú miras?','Sí, lo hace','A veces, rara vez o nunca'],['Si alguien de la familia está triste, ¿busca consolarlo?','Sí, lo hace','A veces, rara vez o nunca'],['Sus primeras palabras, ¿fueron típicas?','Típicas','Algo inusuales, muy inusuales o aún no habla'],['¿Usa gestos simples (decir adiós con la mano)?','Sí, lo hace','A veces, rara vez o nunca'],['¿Se queda mirando fijamente a la nada, sin un propósito?','Nunca o rara vez','A veces, frecuentemente o siempre']];
+$('qs').innerHTML=Q.map(function(q,i){var n='a'+(i+1);return '<div class="card q"><b>A'+(i+1)+'</b> '+q[0]+'<div class="opts"><label><input type="radio" name="'+n+'" value="0"> '+q[1]+'</label><label><input type="radio" name="'+n+'" value="1"> '+q[2]+'</label></div></div>'}).join('');
+function sc(){var t=0,k=0;for(var i=1;i<=10;i++){var r=document.querySelector('input[name=a'+i+']:checked');if(r){t+=+r.value;k++}}var e=$('fsc');e.textContent=t+' / 10 · '+(t>3?'ALERTA':'sin alerta')+(k<10?' ('+k+' de 10 respondidas)':'');e.style.background=t>3?'var(--ac)':'var(--ok)';return t}
+$('qs').addEventListener('change',sc);
+function msg(t,er){$('fmsg').innerHTML='<div class="msg '+(er?'er':'ok')+'">'+t+'</div>';return false}
+var load=function(){try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(x){return[]}},save=function(L){try{localStorage.setItem(K,JSON.stringify(L))}catch(x){}};
+function list(){var L=load();$('flist').innerHTML=L.length?'<table><tr><th>#</th><th>Edad</th><th>Puntaje</th><th>Resultado</th></tr>'+L.map(function(l,i){var c=l.split(',');return '<tr><td>'+(i+1)+'</td><td>'+c[11]+' meses</td><td>'+c[12]+'</td><td>'+(c[c.length-1]=='Yes'?'Alerta':'Sin alerta')+'</td></tr>'}).join('')+'</table>':'Aún no hay casos agregados.'}
+function rerun(L){var b=window.__base||'archivo',t=window.__csv;var d=document.getElementById('d1').textContent;if(window.__base&&window.__base.indexOf('Toddler Autism')==0){t=d}var x=L.length?t.replace(/\s*$/,'')+'\n'+L.join('\n')+'\n':t;window.__run(x,b+(L.length?' + '+L.length+' nuevos':''))}
+$('fadd').addEventListener('click',function(){var a=[];for(var i=1;i<=10;i++){var r=document.querySelector('input[name=a'+i+']:checked');if(!r)return msg('Responde el ítem A'+i+'.',1);a.push(+r.value)}
+var age=+$('fe').value;if(!(age>=12&&age<=36))return msg('La edad debe estar entre 12 y 36 meses.',1);
+if(!$('fs').value||!$('fn').value||!$('fj').value||!$('ff').value||!$('fw').value)return msg('Completa todos los campos.',1);
+var total=a.reduce(function(x,y){return x+y},0),csv=window.__csv,l0=csv.split('\n')[0].replace('\r',''),sep=(l0.match(/;/g)||[]).length>(l0.match(/,/g)||[]).length?';':',',H=l0.split(sep),ci=H.map(norm).indexOf('caseno'),id='';
+if(ci>=0){var mx=0;csv.split('\n').slice(1).forEach(function(l){var v=parseInt(l.split(sep)[ci]);if(v>mx)mx=v});id=mx+1}
+var V={caseno:id,agemons:age,age:age,qchat10score:total,sex:$('fs').value,ethnicity:$('fn').value,jaundice:$('fj').value,familymemwithasd:$('ff').value,whocompletedthetest:$('fw').value,whocompletedtest:$('fw').value,classasdtraits:total>3?'Yes':'No'};for(i=1;i<=10;i++)V['a'+i]=a[i-1];
+var line=H.map(function(h){var v=V[norm(h)];return v===undefined?'':v}).join(sep);
+var L=load();L.push(line);save(L);rerun(L);list();
+msg('✔ Caso agregado: puntaje '+total+' → '+(total>3?'ALERTA':'sin alerta')+'. Ahora hay '+(window.__S?window.__S.n:'')+' registros y el tablero ya se recalculó.');
+for(i=1;i<=10;i++){var rr=document.querySelectorAll('input[name=a'+i+']');rr[0].checked=rr[1].checked=false}['fe','fs','fn','fj','ff','fw'].forEach(function(k){$(k).value=''});sc()});
+$('fclr').addEventListener('click',function(){save([]);rerun([]);list();msg('Se borraron los casos agregados.')});
+$('fdl').addEventListener('click',function(){try{var b=new Blob([window.__csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='dataset_con_nuevos_casos.csv';a.click()}catch(x){msg('La descarga no está disponible aquí; funciona en tu sitio publicado.',1)}});
+sc();list();
+})();
+</script></body></html>
